@@ -1,0 +1,11 @@
+version: "3.2"
+services:
+  aspnet-react-production:
+    image: vtrifonovdocker/aspnet-react-container:prod-v1.0
+    networks:
+      net:
+    ports: 
+      - 45999:80
+    container_name: aspnet-react-production
+networks:
+  net:
