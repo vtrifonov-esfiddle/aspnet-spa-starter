@@ -22,13 +22,14 @@
 .\build\build.ps1
 ```
 
-### Run
+### Local Docker Run
 
 ```
 .\build\run.ps1
 ```
-### Remove
+
+### Run in Kubernetes
 
 ```
-.\build\remove.ps1
+.\production\deployment-up.ps1
 ```
