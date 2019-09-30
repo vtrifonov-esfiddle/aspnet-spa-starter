@@ -1,1 +1,1 @@
-docker-compose down
+docker-compose -f $PSScriptRoot\docker-compose.yaml down
