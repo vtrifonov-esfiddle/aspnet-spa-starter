@@ -10,11 +10,10 @@ WORKDIR /appSource
 COPY . /appSource
 
 WORKDIR /appSource/ClientApp
-RUN ls
 RUN npm install
 
 WORKDIR /appSource
-RUN dotnet build
+RUN dotnet restore
 RUN dotnet publish -c Release -o /appPublish
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.0
