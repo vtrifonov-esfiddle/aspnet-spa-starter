@@ -10,7 +10,8 @@
             "request": "launch",
             "script": "${workspaceRoot}/dev/watchedBuild.ps1",
             "cwd": "${workspaceRoot}",
-            "args": []
+            "args": [],
+            "createTemporaryIntegratedConsole": true
         },
         {
             "name": "Dev Debug (Container)",
