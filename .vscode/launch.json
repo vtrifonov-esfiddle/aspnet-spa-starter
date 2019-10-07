@@ -5,16 +5,24 @@
    "version": "0.2.0",
    "configurations": [       
         {
-            "name": "Dev Build (Container)",
-            "type": "PowerShell",
-            "request": "launch",
-            "script": "${workspaceRoot}/dev/watchedBuild.ps1",
-            "cwd": "${workspaceRoot}",
-            "args": [],
-            "createTemporaryIntegratedConsole": true
+            "name": "Dev Debug (aspnet-react-container)",
+            "type": "coreclr",
+            "preLaunchTask": "Dev Watched Build in Container",
+            "request": "attach",
+            "processName": "aspnet-react-container",
+            "pipeTransport": {
+                "pipeProgram": "docker",
+                "pipeArgs": [ "exec", "-i", "aspnet-react-container.dev" ],
+                "debuggerPath": "/root/vsdbg/vsdbg",
+                "pipeCwd": "${workspaceRoot}/src",
+                "quoteArgs": false
+            },
+            "sourceFileMap": {
+                "/app": "${workspaceRoot}/src"
+            }
         },
         {
-            "name": "Dev Debug (Container)",
+            "name": "Dev Debug (select container process)",
             "type": "coreclr",
             "preLaunchTask": "Dev Watched Build in Container",
             "request": "attach",
@@ -29,6 +37,6 @@
             "sourceFileMap": {
                 "/app": "${workspaceRoot}/src"
             }
-        }
+        },
     ]
 }
