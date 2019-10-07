@@ -3,34 +3,31 @@
    // Use hover for the description of the existing attributes
    // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
    "version": "0.2.0",
-   "configurations": [
+   "configurations": [       
         {
-            "name": ".NET Core Launch (web)",
-            "type": "coreclr",
+            "name": "Dev Build (Container)",
+            "type": "PowerShell",
             "request": "launch",
-            "preLaunchTask": "build",
-            // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/src/bin/Debug/netcoreapp3.0/aspnet-react-container.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/src",
-            "stopAtEntry": false,
-            // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
-            "serverReadyAction": {
-                "action": "openExternally",
-                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"                
-            },
-            "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
-            },
-            "sourceFileMap": {
-                "/Views": "${workspaceFolder}/Views"
-            }
+            "script": "${workspaceRoot}/dev/watchedBuild.ps1",
+            "cwd": "${workspaceRoot}",
+            "args": []
         },
         {
-            "name": ".NET Core Attach",
+            "name": "Dev Debug (Container)",
             "type": "coreclr",
+            "preLaunchTask": "Dev Watched Build in Container",
             "request": "attach",
-            "processId": "${command:pickProcess}"
+            "processId": "${command:pickRemoteProcess}",
+            "pipeTransport": {
+                "pipeProgram": "docker",
+                "pipeArgs": [ "exec", "-i", "aspnet-react-container.dev" ],
+                "debuggerPath": "/root/vsdbg/vsdbg",
+                "pipeCwd": "${workspaceRoot}/src",
+                "quoteArgs": false
+            },
+            "sourceFileMap": {
+                "/app": "${workspaceRoot}/src"
+            }
         }
     ]
 }

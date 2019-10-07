@@ -49,6 +49,11 @@
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
-        }
+        },
+        {
+            "label": "Dev Watched Build in Container",
+            "command": "${workspaceFolder}/dev/watchedBuild.ps1",
+            "type": "shell",
+        },
     ]
 }
