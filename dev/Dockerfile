@@ -14,6 +14,9 @@ RUN curl -sSL https://aka.ms/getvsdbgsh | /bin/sh /dev/stdin -v latest -l /root/
 
 ENV ASPNETCORE_ENVIRONMENT Development
 ENV NODE_ENV development
+# necessary for to react hot module reload to pick up watched source changes in docker container
+# https://github.com/paulmillr/chokidar#performance
 ENV CHOKIDAR_USEPOLLING true
+ENV CHOKIDAR_INTERVAL 1000
 
 WORKDIR /app
