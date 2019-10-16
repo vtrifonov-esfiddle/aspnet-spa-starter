@@ -17,6 +17,6 @@ ENV NODE_ENV development
 # necessary for to react hot module reload to pick up watched source changes in docker container
 # https://github.com/paulmillr/chokidar#performance
 ENV CHOKIDAR_USEPOLLING true
-ENV CHOKIDAR_INTERVAL 1000
+ENV CHOKIDAR_INTERVAL 3000
 
 WORKDIR /app
