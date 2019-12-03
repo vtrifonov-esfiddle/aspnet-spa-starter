@@ -35,5 +35,18 @@ namespace aspnet_react_container.Controllers
             })
             .ToArray();
         }
+
+        [HttpGet]
+        [Route("{weatherId}")]
+        public WeatherForecast Get(int weatherId)
+        {
+            var rng = new Random();
+            return new WeatherForecast
+            {
+                Date = DateTime.Now.AddDays(weatherId),
+                TemperatureC = rng.Next(-20, 55),
+                Summary = Summaries[rng.Next(Summaries.Length)]
+            };
+        }
     }
 }
