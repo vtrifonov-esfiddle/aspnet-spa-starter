@@ -8,6 +8,41 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
+            },
+            "problemMatcher": [
+                "$tsc-watch"
+            ],
+            "isBackground": true
+        },
+        {
+            "label": "React Dev Watched Build in Container",
+            "command": "${workspaceFolder}/dev/watchedReactBuild.ps1",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$tsc-watch"
+            ],
+            "isBackground": true
+        },
+        {
+            "label": "React Jest Unit tests Watched in Container",
+            "command": "${workspaceFolder}/dev/watchedReactTest.ps1",
+            "type": "shell",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Dev Unit Tests Watched in Container",
+            "command": "${workspaceFolder}/dev/watchedTest.ps1",
+            "type": "shell",
+            "group": {
+                "kind": "test",
+                "isDefault": true
             }
         },
         {
@@ -21,6 +56,6 @@
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
-        },
+        }
     ]
 }
