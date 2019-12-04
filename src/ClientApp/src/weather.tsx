@@ -10,24 +10,13 @@ export interface IWeather {
   date: string;
 }
 
-const testFetchPromiseImpl = new Promise<IWeather>((resolve, reject) => {
-  resolve({
-    date: new Date('2019-04-05').toDateString(),
-    temperatureC: 10,
-    summary: 'London mild weather'
-  } as IWeather);
-}); 
-
-window['testFetch'] = (uri: string) => (testFetchPromiseImpl);
 
 export function Weather(props: IProps) {
   const [weather, setWeather] = useState(null);
 
   async function fetchWeather(id) {
-    // const response = await fetch(`/WeatherForecast/${id}/`);
-    // setWeather(await response.json());
-    const jsonResponse = await window['testFetch'](`/WeatherForecast/${id}/`);
-    setWeather(jsonResponse);
+    const response = await fetch(`/WeatherForecast/${id}/`);
+    setWeather(await response.json());
   }
   useEffect(() => {
     fetchWeather(props.id);

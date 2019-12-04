@@ -18,19 +18,25 @@ afterEach(() => {
   container = null;
 });
 
-test('Weather compile', () => {
+test('Weather compile with mock data', async() => {
   var id = 1;
-
-  act(() => {    
-      const mockedFetch = jest.fn();
-    
-      mockedFetch.mockResolvedValue({
-        date: new Date('2019-04-05').toDateString(),
-        temperatureC: -5,
-        summary: 'Test London mild weather'
-      } as IWeather);
-
-      window['testFetch'] = mockedFetch;
-      //render(<Weather id={id} />, container);
+  
+  const expectedValue = {
+    date: new Date('2019-04-05').toDateString(),
+    temperatureC: -5,
+    summary: 'Test London mild weather'
+  } as IWeather;
+  
+  const fetchSpy = jest.spyOn(window, 'fetch').mockImplementation(() =>
+    Promise.resolve({ 
+      json: () => Promise.resolve(expectedValue)
+    } as Response));
+  await act(async() => {    
+      render(<Weather id={id} />, container);
   });
+
+  expect(fetchSpy.mock.calls.length).toBe(1);
+  expect(container.innerHTML).toMatchSnapshot();
+
+  fetchSpy.mockReset();
 });
