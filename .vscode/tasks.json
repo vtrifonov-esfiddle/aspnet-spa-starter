@@ -28,7 +28,7 @@
             "isBackground": true
         },
         {
-            "label": "React Jest Unit tests Watched in Container",
+            "label": "Run React Jest Unit tests (watched)",
             "command": "${workspaceFolder}/dev/watchedReactTest.ps1",
             "type": "shell",
             "group": {
@@ -37,8 +37,8 @@
             }
         },
         {
-            "label": "Dev Unit Tests Watched in Container",
-            "command": "${workspaceFolder}/dev/watchedTest.ps1",
+            "label": "Run ASP .NET Unit Tests (watched)",
+            "command": "${workspaceFolder}/dev/watchedTestAspNet.ps1",
             "type": "shell",
             "group": {
                 "kind": "test",
