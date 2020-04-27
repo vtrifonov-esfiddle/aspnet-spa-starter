@@ -16,7 +16,7 @@ jobs:
   build:
     env:
       IMAGE_NAME: aspnet-react-container
-      VERSION: build-${{ github.github.run_number }}
+      VERSION: build-${{ github.run_number }}
     # The type of runner that the job will run on
     runs-on: ubuntu-18.04
 
@@ -46,5 +46,6 @@ jobs:
         docker push $IMAGE_ID:$VERSION
     - name: tag git commit
       run: |
+        echo VERSION=$VERSION
         git tag $VERSION
         git push origin $VERSION
