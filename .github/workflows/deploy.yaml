@@ -28,7 +28,7 @@ jobs:
       run: |
         # get tag ref skipping "refs/tags/" prefix
         VERSION={{github.ref}}
-        VERSION={VERSION:10}
+        VERSION=${VERSION:10}
         echo "Version: $VERSION"
         docker-compose -f ./production/docker-compose.yaml up --detach      
       env:
