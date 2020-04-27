@@ -32,4 +32,4 @@ jobs:
         docker-compose -f ./production/docker-compose.yaml up --detach      
       env:
         DOCKER_REPOSITORY: docker.pkg.github.com/${{ github.repository }}
-        VERSION: "{{github.ref}}"
+        VERSION: "{{ github.ref }}"
