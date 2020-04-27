@@ -1,0 +1,11 @@
+version: "3.2"
+services:
+  aspnet-react-production:
+    image: ${DOCKER_REPOSITORY}/aspnet-react-container:${VERSION}
+    networks:
+      net:
+    ports: 
+      - 45999:80
+    container_name: aspnet-react-production
+networks:
+  net:
