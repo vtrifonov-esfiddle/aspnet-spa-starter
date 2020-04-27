@@ -26,7 +26,8 @@ jobs:
 
     - name: docker-compose up
       run: |
-        VERSION=git tag --contains HEAD
+        # get tag ref skipping "refs/tags/" prefix
+        VERSION={{github.ref:10}}
         echo "Version: $VERSION"
         docker-compose -f ./production/docker-compose.yaml up --detach      
       env:
