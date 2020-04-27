@@ -23,13 +23,13 @@ jobs:
 
     - name: Log into registry
       run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
-
-    - name: docker-compose up
+    - name: Set VERSION environment variable
       run: |
         # get tag ref skipping "refs/tags/" prefix
-        VERSION=${VERSION:10}
+        echo ::set-env name=VERSION::${GITHUB_REF:10}
+    - name: docker-compose up
+      run: |        
         echo "Version: $VERSION"
         docker-compose -f ./production/docker-compose.yaml up --detach      
       env:
         DOCKER_REPOSITORY: docker.pkg.github.com/${{ github.repository }}
-        VERSION: "{{ github.ref }}"
