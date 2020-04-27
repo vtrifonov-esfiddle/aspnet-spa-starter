@@ -25,7 +25,9 @@ jobs:
       run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
 
     - name: docker-compose up
-      run: docker-compose -f ./production/docker-compose.yaml up --detach      
+      run: |
+        VERSION=git tag --contains HEAD
+        echo "Version: $VERSION"
+        docker-compose -f ./production/docker-compose.yaml up --detach      
       env:
         DOCKER_REPOSITORY: docker.pkg.github.com/${{ github.repository }}
-        VERSION: build-1
