@@ -16,6 +16,7 @@ jobs:
   build:
     env:
       IMAGE_NAME: aspnet-react-container
+      VERSION: build-${{ github.github.run_number }}
     # The type of runner that the job will run on
     runs-on: ubuntu-18.04
 
@@ -28,7 +29,6 @@ jobs:
     - name: Docker build
       run: docker build --file ./build/Dockerfile --tag $IMAGE_NAME $CONTEXT
       env:
-        VERSION: v1.1
         CONTEXT: ./src
     - name: Log into registry
       run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
@@ -39,13 +39,12 @@ jobs:
           
         # Change all uppercase to lowercase
         IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
-        # Strip git ref prefix from version
-        VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-        # Strip "v" prefix from tag name
-        [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-        # Use Docker `latest` tag convention
-        [ "$VERSION" == "master" ] && VERSION=latest
+   
         echo IMAGE_ID=$IMAGE_ID
         echo VERSION=$VERSION
         docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
         docker push $IMAGE_ID:$VERSION
+    - name: tag git commit
+      run: |
+        git tag $VERSION
+        git push origin $VERSION
