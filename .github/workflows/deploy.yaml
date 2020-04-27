@@ -21,7 +21,7 @@ jobs:
 
     # Runs a set of commands using the runners shell
     - name: docker-compose up
-      run: docker-compose build -f ./production/docker-compose.yaml up --detach      
+      run: docker-compose up -f ./production/docker-compose.yaml up --detach      
       env:
         DOCKER_REPOSITORY: docker.pkg.github.com/${{ github.repository }}
         VERSION: latest
