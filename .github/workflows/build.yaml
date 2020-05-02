@@ -42,6 +42,7 @@ jobs:
         docker push $IMAGE_ID:$FULL_VERSION
         docker push $IMAGE_ID:$VERSION
     - name: tag git commit
+      uses: actions/checkout@v2
       run: |
         echo FULL_VERSION=$FULL_VERSION
         git tag $FULL_VERSION
