@@ -28,7 +28,7 @@ jobs:
 
     # Runs a set of commands using the runners shell
     - name: Docker build
-      run: docker build --file ./build/Dockerfile --tag $IMAGE_ID:$VERSION $CONTEXT
+      run: docker build --file ./build/Dockerfile --tag $IMAGE_ID:$VERSION --tag $IMAGE_ID:$FULL_VERSION $CONTEXT
       env:
         CONTEXT: ./src
     - name: Log into registry
@@ -38,7 +38,6 @@ jobs:
       run: |   
         echo IMAGE_ID=$IMAGE_ID
         echo FULL_VERSION=$FULL_VERSION
-        docker tag $IMAGE_ID:$VERSION $IMAGE_ID:$FULL_VERSION
         docker push $IMAGE_ID:$FULL_VERSION
     - name: tag git commit
       run: |
