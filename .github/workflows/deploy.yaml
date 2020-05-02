@@ -4,7 +4,7 @@ name: deploy
 
 on:
   registry_package:
-    types: [published]
+    types: [published, updated]
 
 env:
   VERSION: v0.0.0
