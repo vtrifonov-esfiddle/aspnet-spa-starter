@@ -3,10 +3,12 @@
 name: deploy
 
 on:
-  push:
-    tags:
-      - 'build-**'
-  
+  release:
+    types: [published]
+
+env:
+  VERSION: v0.0.0
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -21,13 +23,9 @@ jobs:
 
     - name: Log into registry
       run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
-    - name: Set VERSION environment variable
-      run: |
-        # get tag ref skipping "refs/tags/" prefix
-        echo ::set-env name=VERSION::${GITHUB_REF:10}
     - name: docker-compose up
       run: |        
         echo "Version: $VERSION"
-        docker-compose -f ./production/docker-compose.yaml up --detach      
+        docker-compose -f ./production/docker-compose.yaml up --detach --force-recreate     
       env:
         DOCKER_REPOSITORY: docker.pkg.github.com/${{ github.repository }}
