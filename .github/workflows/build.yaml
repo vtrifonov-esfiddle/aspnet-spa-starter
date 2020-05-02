@@ -17,7 +17,7 @@ jobs:
     env:
       IMAGE_ID: docker.pkg.github.com/${{ github.repository }}/aspnet-react-container
       VERSION: v0.0.0
-      FULL_VERSION: $VERSION+${{ github.run_number }}
+      FULL_VERSION: ${{ env.VERSION }}+${{ github.run_number }}
     # The type of runner that the job will run on
     runs-on: ubuntu-18.04
 
