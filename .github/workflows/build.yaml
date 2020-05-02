@@ -37,8 +37,10 @@ jobs:
     - name: Push image
       run: |   
         echo IMAGE_ID=$IMAGE_ID
+        echo VERSION=$VERSION
         echo FULL_VERSION=$FULL_VERSION
         docker push $IMAGE_ID:$FULL_VERSION
+        docker push $IMAGE_ID:$VERSION
     - name: tag git commit
       run: |
         echo FULL_VERSION=$FULL_VERSION
