@@ -11,8 +11,9 @@ on:
     branches: [ master ]
 env:
   VERSION: v0.0.0
-  IMAGE_ID: docker.pkg.github.com/${{ github.repository }}/aspnet-react-container      
-  FULL_VERSION: ${{ env.VERSION }}+${{ github.run_number }}
+  FULL_VERSION: v0.0.0+${{ github.run_number }}
+  IMAGE_ID: docker.pkg.github.com/${{ github.repository }}/aspnet-react-container  
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
