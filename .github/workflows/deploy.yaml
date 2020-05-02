@@ -3,7 +3,7 @@
 name: deploy
 
 on:
-  release:
+  registry_package:
     types: [published]
 
 env:
