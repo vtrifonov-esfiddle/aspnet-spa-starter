@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: aspnet-react-container
-        image: vtrifonovdocker/aspnet-react-container:prod-v1.0
+        image: docker.pkg.github.com/vtrifonov-esfiddle/aspnet-react-container:v0.0.0
         ports:
         - containerPort: 80
 ---
@@ -27,6 +27,8 @@ metadata:
 spec:
   selector:
     app: aspnet-react-container-pod
+  type: LoadBalancer
   ports:
   - protocol: TCP
     port: 80
+    nodePort: 30001
