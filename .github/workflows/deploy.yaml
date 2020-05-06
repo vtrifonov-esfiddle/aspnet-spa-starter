@@ -32,6 +32,8 @@ jobs:
       run: . ./production/createGithubRegistrySecret.sh
       env:
         GITHUB_USERNAME: ${{ github.actor }}
-        PAT_TOKEN: ${{ secrets.GithubDockerRegistryRead }}
+        # create this secret in https://github.com/${{ github.actor }}/${{ github.repository }}/settings/secrets
+        # providing PAT value with read:packages permission from: https://github.com/settings/tokens
+        PAT_TOKEN: ${{ secrets.GithubDockerRegistryRead }} 
     - name: deploy to k3s
       run: sudo kubectl -f ./production/aspnet-react-deployment.yaml apply

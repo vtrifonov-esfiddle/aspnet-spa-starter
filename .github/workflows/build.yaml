@@ -7,8 +7,17 @@ name: CI
 on:
   push:
     branches: [ master ]
+    paths-ignore:
+      - '.github/**'
+      - '.vscode/**'
+      - 'dev/**'
+      - 'README.md'
   pull_request:
     branches: [ master ]
+    paths-ignore:
+      - '.vscode/**'
+      - 'dev/**'
+      - 'README.md'
 env:
   VERSION: v0.0.0
   FULL_VERSION: v0.0.0-${{ github.run_number }}
