@@ -1,1 +1,0 @@
-kubectl -f $PSScriptRoot\aspnet-react-deployment.yaml apply

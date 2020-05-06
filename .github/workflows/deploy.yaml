@@ -28,14 +28,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Log into registry    
-      run: |
-        kubectl create secret docker-registry github-registry \
-          --docker-server="docker.pkg.github.com" \
-          --docker-username=$GITHUB_USERNAME \
-          --docker-password=$PAT_TOKEN
+    - name: Create secret for the github docker registry    
+      run: . ./production/createGithubRegistrySecret.sh
       env:
         GITHUB_USERNAME: ${{ github.actor }}
         PAT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: deploy to k3s
-      run: kubectl -f ./production/aspnet-react-deployment.yaml apply
+      run: sudo kubectl -f ./production/aspnet-react-deployment.yaml apply
