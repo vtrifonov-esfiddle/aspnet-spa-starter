@@ -1,6 +1,6 @@
 #!/bin/bash
-GITHUB_USERNAME="${{ github.actor }}"
-PAT_TOKEN="${{ secrets.GITHUB_TOKEN }}"
+# GITHUB_USERNAME="${{ github.actor }}"
+# PAT_TOKEN="${{ secrets.GITHUB_TOKEN }}"
 
 kubectl create secret docker-registry github-registry \
   --docker-server="docker.pkg.github.com" \

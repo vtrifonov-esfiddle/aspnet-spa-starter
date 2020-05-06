@@ -12,7 +12,7 @@ env:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  deploy:    
+  deploy-docker-compose:    
     # The type of runner that the job will run on
     runs-on: [self-hosted, deploy, docker-compose]
 
@@ -29,3 +29,19 @@ jobs:
         docker-compose -f ./production/docker-compose.yaml up --detach --force-recreate     
       env:
         DOCKER_REPOSITORY: docker.pkg.github.com/${{ github.repository }}
+  deploy-k3s:
+    runs-on: [self-hosted, deploy, k3s]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Log into registry    
+      run: |
+        kubectl create secret docker-registry github-registry \
+          --docker-server="docker.pkg.github.com" \
+          --docker-username=$GITHUB_USERNAME \
+          --docker-password=$PAT_TOKEN
+      env:
+        GITHUB_USERNAME: ${{ github.actor }}
+        PAT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: deploy to k3s
+      run: kubectl -f ./production/aspnet-react-deployment.yaml apply
