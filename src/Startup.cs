@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace aspnet_react_container
+namespace AspnetReactContainer
 {
     public class Startup
     {
@@ -63,7 +63,8 @@ namespace aspnet_react_container
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseReactDevelopmentServer(npmScript: "start");
+                    string watchedReactUri = Configuration.GetValue<string>("WATCHED_REACT_URI");
+                    spa.UseProxyToSpaDevelopmentServer(watchedReactUri);
                 }
             });
         }

@@ -8,32 +8,17 @@ env:
   VERSION: v0.0.0
 
 jobs:
-  deploy-docker-compose:    
-    runs-on: [self-hosted, deploy, docker-compose]
-
-    steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
-
-    - name: Log into registry
-      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
-    - name: docker-compose up
-      run: |        
-        echo "Version: $VERSION"
-        docker-compose -f ./production/docker-compose.yaml up --detach --force-recreate     
-      env:
-        DOCKER_REPOSITORY: docker.pkg.github.com/${{ github.repository }}
   deploy-k3s:
     runs-on: [self-hosted, deploy, k3s]
 
     steps:
     - uses: actions/checkout@v2
     - name: Create secret for the github docker registry    
-      run: . ./production/createGithubRegistrySecret.sh
+      run: . ./.github/workflows/deploy/createGithubRegistrySecret.sh
       env:
         GITHUB_USERNAME: ${{ github.actor }}
         # create this secret in https://github.com/${{ github.actor }}/${{ github.repository }}/settings/secrets
         # providing PAT value with read:packages permission from: https://github.com/settings/tokens
         PAT_TOKEN: ${{ secrets.GithubDockerRegistryRead }} 
     - name: deploy to k3s
-      run: sudo kubectl -f ./production/aspnet-react-deployment.yaml apply
+      run: sudo kubectl -f ./.github/workflows/deploy/aspnet-react-deployment.yaml apply

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace aspnet_react_container.Controllers
+namespace AspnetReactContainer.Controllers
 {
     [ApiController]
     [Route("[controller]")]

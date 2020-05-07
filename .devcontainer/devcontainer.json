@@ -1,0 +1,33 @@
+// For format details, see https://aka.ms/vscode-remote/devcontainer.json or this file's README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.101.1/containers/docker-in-docker-compose
+// If you want to run as a non-root user in the container, see .devcontainer/docker-compose.yml.
+{
+	"name": "ASP.NET React Dev",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "watched-aspnet-run",
+	"workspaceFolder": "/app",
+	
+	// Set *default* container specific settings.json values on container create.
+	"settings": { 
+		"terminal.integrated.shell.linux": "/bin/bash"
+	},
+
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"ms-vscode.csharp",
+		"msjsdiag.debugger-for-chrome",
+		"dbaeumer.vscode-eslint"
+	],
+	"forwardPorts": [5000, 5001],
+	"shutdownAction": "stopCompose"
+
+	// Uncomment the next line if you want start specific services in your Docker Compose config.
+	//"runServices": [""]
+
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "docker --version",
+
+	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+	// "remoteUser": "vscode"
+}

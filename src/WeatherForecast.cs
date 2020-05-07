@@ -1,6 +1,6 @@
 using System;
 
-namespace aspnet_react_container
+namespace AspnetReactContainer
 {
     public class WeatherForecast
     {
