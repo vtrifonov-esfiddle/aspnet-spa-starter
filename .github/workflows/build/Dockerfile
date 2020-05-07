@@ -20,4 +20,4 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:3.0
 WORKDIR /app
 COPY --from=build /appPublish /app
 
-ENTRYPOINT ["dotnet", "aspnet-react-container.dll"]
+ENTRYPOINT ["dotnet", "AspnetReactContainer.dll"]
