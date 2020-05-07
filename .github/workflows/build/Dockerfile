@@ -1,23 +1,22 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.0 as build
+FROM node:12 AS nodeBuild
 
-RUN apt-get -qq update && apt-get -qqy --no-install-recommends install wget gnupg \
-    git \
-    unzip
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
-RUN apt-get install -y nodejs
+WORKDIR /appSource/ClientApp
+COPY ./ClientApp /appSource/ClientApp
+
+RUN npm install
+RUN npm run-script build
+
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0 as aspnetBuild
 
 WORKDIR /appSource
 COPY . /appSource
+COPY --from=nodeBuild /appSource/ClientApp/build /appSource/ClientApp/build
 
-WORKDIR /appSource/ClientApp
-RUN npm install
-
-WORKDIR /appSource
 RUN dotnet restore
 RUN dotnet publish -c Release -o /appPublish
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.0
 WORKDIR /app
-COPY --from=build /appPublish /app
+COPY --from=aspnetBuild /appPublish /app
 
 ENTRYPOINT ["dotnet", "AspnetReactContainer.dll"]

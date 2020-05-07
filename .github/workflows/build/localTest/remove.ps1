@@ -1,1 +1,1 @@
-docker-compose -f "$PSScriptRoot\..\docker-compose.yaml" down
+docker-compose -f "$PSScriptRoot\..\docker-compose.yaml" --env-file ".\.env" down
