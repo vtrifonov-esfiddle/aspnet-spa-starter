@@ -70,8 +70,8 @@ jobs:
         echo "Version: $FULL_VERSION"
         
         # setup environment variables for docker-compose
-        echo "DOCKER_REPOSITORY=$DOCKER_REPOSITORY" > .env
-        echo "VERSION=$FULL_VERSION" >> .env
+        echo "DOCKER_REPOSITORY=$DOCKER_REPOSITORY" > ./.github/workflows/build/.env
+        echo "VERSION=$FULL_VERSION" >> ./.github/workflows/build/.env
 
         docker-compose -f ./.github/workflows/build/docker-compose.yaml down
         docker-compose -f ./.github/workflows/build/docker-compose.yaml up --detach    

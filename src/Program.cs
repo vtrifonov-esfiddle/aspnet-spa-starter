@@ -21,3 +21,4 @@ namespace AspnetReactContainer
                 .UseStartup<Startup>();
     }
 }
+
