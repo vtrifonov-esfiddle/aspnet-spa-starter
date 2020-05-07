@@ -6,4 +6,4 @@ function Build($DOCKER_REPOSITORY, $VERSION) {
     docker push $Tag
 }
 
-Build "docker.pkg.github.com/vtrifonov-esfiddle" "v0.0.0-local"
+Build "docker.pkg.github.com/vtrifonov-esfiddle" "v0.0.1-local"
