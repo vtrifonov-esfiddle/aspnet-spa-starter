@@ -67,11 +67,11 @@ jobs:
       run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
     - name: docker-compose up
       run: |        
-        echo "Version: $VERSION"
+        echo "Version: $FULL_VERSION"
         
         # setup environment variables for docker-compose
         echo "DOCKER_REPOSITORY=$DOCKER_REPOSITORY" > .env
-        echo "VERSION=$VERSION" >> .env
+        echo "VERSION=$FULL_VERSION" >> .env
 
         docker-compose -f ./.github/workflows/build/docker-compose.yaml down
         docker-compose -f ./.github/workflows/build/docker-compose.yaml up --detach    
