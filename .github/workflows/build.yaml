@@ -68,6 +68,11 @@ jobs:
     - name: docker-compose up
       run: |        
         echo "Version: $VERSION"
+        
+        # setup environment variables for docker-compose
+        echo "DOCKER_REPOSITORY=$DOCKER_REPOSITORY" > .env
+        echo "VERSION=$VERSION" >> .env
+
         docker-compose -f ./.github/workflows/build/docker-compose.yaml down
         docker-compose -f ./.github/workflows/build/docker-compose.yaml up --detach    
       env:
