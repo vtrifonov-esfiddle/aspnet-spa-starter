@@ -68,6 +68,7 @@ jobs:
     - name: docker-compose up
       run: |        
         echo "Version: $VERSION"
-        docker-compose -f ./.github/workflows/build/docker-compose.yaml up --detach --force-recreate     
+        docker-compose -f ./.github/workflows/build/docker-compose.yaml down
+        docker-compose -f ./.github/workflows/build/docker-compose.yaml up --detach    
       env:
         DOCKER_REPOSITORY: docker.pkg.github.com/${{ github.repository }}
