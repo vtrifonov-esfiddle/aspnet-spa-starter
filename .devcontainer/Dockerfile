@@ -10,3 +10,24 @@ RUN apt-get install -y nodejs \
 
 ENV ASPNETCORE_ENVIRONMENT Development
 ENV NODE_ENV development
+
+RUN apt-get update \
+    #
+    # Install Docker CE CLI
+    && apt-get install -y apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - \
+    && add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/debian \
+   $(lsb_release -cs) \
+   stable"
+RUN apt-get update \
+    && apt-get install -y docker-ce-cli
+    #
+    # Install Docker Compose
+RUN LATEST_COMPOSE_VERSION=$(curl -sSL "https://api.github.com/repos/docker/compose/releases/latest" | grep -o -P '(?<="tag_name": ").+(?=")')
+RUN curl -sSL "https://github.com/docker/compose/releases/download/${LATEST_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+RUN chmod +x /usr/local/bin/docker-compose

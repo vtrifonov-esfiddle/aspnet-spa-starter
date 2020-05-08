@@ -16,11 +16,15 @@
 	"extensions": [
 		"ms-dotnettools.csharp",
 		"msjsdiag.debugger-for-chrome",
-		"dbaeumer.vscode-eslint"
+		"dbaeumer.vscode-eslint",
+		"eamodio.gitlens",
+		"ms-azuretools.vscode-docker"
 	],
+	"remote.extensionKind": {
+		"ms-azuretools.vscode-docker": [ "ui" ],
+	},
 	"forwardPorts": [5000, 5001],
-	"shutdownAction": "stopCompose"
-
+	"shutdownAction": "stopCompose",
 	// Uncomment the next line if you want start specific services in your Docker Compose config.
 	//"runServices": [""]
 
