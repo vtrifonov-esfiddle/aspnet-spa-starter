@@ -97,5 +97,5 @@ jobs:
         DOCKER_REPOSITORY: docker.pkg.github.com/${{ github.repository }}
     - name: test deployment
       run: |
-        echo ::set-env name=ASPNET_REACT_PRODUCTION_URI::$(echo http://localhost:${{env.HOST_PORT}})
+        echo ::set-env name=ASPNET_REACT_PRODUCTION_URI::http://localhost:${{env.HOST_PORT}}
         bash ./.github/workflows/build/testDeployment.sh
