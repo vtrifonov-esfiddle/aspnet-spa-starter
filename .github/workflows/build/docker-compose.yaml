@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 services:
   aspnet-react-production:
     image: ${DOCKER_REPOSITORY}/aspnet-react-container:${VERSION}

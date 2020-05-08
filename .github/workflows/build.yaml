@@ -8,9 +8,10 @@ on:
   push:
     branches: [ master ]
     paths-ignore:
-      - '.github/**'
-      - '.vscode/**'
+      - '.github/workflows/deploy/**'
+      - '.github/workflows/deploy.yaml'
       - 'dev/**'
+      - '.vscode/**'
       - 'README.md'
   pull_request:
     branches: [ master ]
@@ -25,6 +26,13 @@ env:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  unit-test:
+    runs-on: [self-hosted, build]
+    steps:
+      - uses: actions/checkout@v2
+      - name: run react unit tests
+      - run: |
+          docker run --volume "./src/ClientApp:/app/ClientApp" -w /app/ClientApp node:12 bash -c "CI=true npm test"
   # This workflow contains a single job called "build"
   build:      
     # The type of runner that the job will run on
