@@ -5,7 +5,7 @@ services:
     networks:
       net:
     ports: 
-      - 45999:80
+      - ${HOST_PORT}:80
     container_name: aspnet-react-production
 networks:
   net:

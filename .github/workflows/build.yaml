@@ -23,7 +23,7 @@ env:
   VERSION: v0.0.1
   FULL_VERSION: v0.0.1-${{ github.run_number }}
   IMAGE_ID: docker.pkg.github.com/${{ github.repository }}/aspnet-react-container  
-
+  HOST_PORT: 45999
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   unit-test:
@@ -89,8 +89,13 @@ jobs:
         # setup environment variables for docker-compose
         echo "DOCKER_REPOSITORY=$DOCKER_REPOSITORY" > ./.github/workflows/build/.env
         echo "VERSION=$FULL_VERSION" >> ./.github/workflows/build/.env
+        echo "HOST_PORT=$HOST_PORT" >> ./.github/workflows/build/.env
 
         docker-compose -f ./.github/workflows/build/docker-compose.yaml down
         docker-compose -f ./.github/workflows/build/docker-compose.yaml up --detach    
       env:
         DOCKER_REPOSITORY: docker.pkg.github.com/${{ github.repository }}
+    - name: test deployment
+      run: bash ./.github/workflows/build/testDeployment.sh
+      env:
+        ASPNET_REACT_PRODUCTION_URI: http://localhost:$HOST_PORT
