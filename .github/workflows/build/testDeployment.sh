@@ -1,4 +1,4 @@
-tryCount=0
+tryCount=1
 errorCode=1
 while [ $tryCount -le 3 ] && [ $errorCode -ne 0 ]
 do
