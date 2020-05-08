@@ -11,6 +11,8 @@ RUN apt-get install -y nodejs \
 ENV ASPNETCORE_ENVIRONMENT Development
 ENV NODE_ENV development
 
+# https://code.visualstudio.com/docs/remote/containers-advanced#_using-docker-or-kubernetes-from-a-container
+
 RUN apt-get update \
     #
     # Install Docker CE CLI
