@@ -34,7 +34,7 @@ jobs:
       - name: run react unit tests
         run: |        
           docker run  \
-          --volume $PWD/ClientApp:/app/ClientApp:cached \
+          --volume $PWD/src/ClientApp:/app/ClientApp:cached \
           --volume react-unit-tests-node_modules:/app/ClientApp/node_modules \
           --workdir /app/ClientApp \
           --name react-unit-tests \
