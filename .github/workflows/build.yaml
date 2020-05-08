@@ -21,7 +21,7 @@ on:
       - 'README.md'
 env:
   VERSION: v0.0.2
-  FULL_VERSION: ${{ env.VERSION}}-${{ github.run_number }}
+  FULL_VERSION: v0.0.2-${{ github.run_number }}
   IMAGE_ID: docker.pkg.github.com/${{ github.repository }}/aspnet-react-container  
   HOST_PORT: 45999
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
