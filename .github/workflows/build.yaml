@@ -32,8 +32,15 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: run react unit tests
-        run: |
-          docker run --volume ./src/ClientApp:/app/ClientApp -w /app/ClientApp node:12 bash -c "CI=true npm test"
+        run: |        
+          docker run  \
+          --volume $PWD/ClientApp:/app/ClientApp:cached \
+          --volume react-unit-tests-node_modules:/app/ClientApp/node_modules \
+          --workdir /app/ClientApp \
+          --name react-unit-tests \
+          --rm \
+          node:12 bash \
+          -c "npm ci && CI=true npm test"    
   # This workflow contains a single job called "build"
   build:
     needs: [unit-test]      
