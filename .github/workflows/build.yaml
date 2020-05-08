@@ -95,7 +95,8 @@ jobs:
         docker-compose -f ./.github/workflows/build/docker-compose.yaml up --detach    
       env:
         DOCKER_REPOSITORY: docker.pkg.github.com/${{ github.repository }}
+    - name: set env var ASPNET_REACT_PRODUCTION_URI
+      run: echo ::set-env name=ASPNET_REACT_PRODUCTION_URI::http://localhost:${{env.HOST_PORT}}
     - name: test deployment
-      run: |
-        echo ::set-env name=ASPNET_REACT_PRODUCTION_URI::http://localhost:${{env.HOST_PORT}}
+      run: |        
         bash ./.github/workflows/build/testDeployment.sh
