@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: aspnet-react-container
-        image: docker.pkg.github.com/vtrifonov-esfiddle/aspnet-react-container/aspnet-react-container:v0.0.0
+        image: docker.pkg.github.com/vtrifonov-esfiddle/aspnet-react-container/aspnet-react-container:v0.0.2
         ports:
         - containerPort: 80
       imagePullSecrets:

@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.0
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1
 
 RUN apt-get -qq update && apt-get -qqy --no-install-recommends install wget gnupg \
     git \
