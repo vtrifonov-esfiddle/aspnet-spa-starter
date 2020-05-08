@@ -30,12 +30,13 @@ jobs:
     runs-on: [self-hosted, build]
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: run react unit tests
         run: |
-          docker run --volume "./src/ClientApp:/app/ClientApp" -w /app/ClientApp node:12 bash -c "CI=true npm test"
+          docker run --volume ./src/ClientApp:/app/ClientApp -w /app/ClientApp node:12 bash -c "CI=true npm test"
   # This workflow contains a single job called "build"
-  build:      
+  build:
+    needs: [unit-test]      
     # The type of runner that the job will run on
     runs-on: [self-hosted, build]
 
