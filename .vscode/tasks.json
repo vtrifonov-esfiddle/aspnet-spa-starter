@@ -22,13 +22,13 @@
             "type": "process",
             "args": [
                 "test",
-                "${workspaceFolder}/src-test/src-test.csproj",
+                "${workspaceFolder}/unitTests/UnitTests.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile",
             "options": {
-                "cwd": "${workspaceFolder}/src-test"
+                "cwd": "${workspaceFolder}/unitTests"
             }
         },
         {
