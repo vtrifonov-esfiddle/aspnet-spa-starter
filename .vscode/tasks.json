@@ -1,42 +1,51 @@
 {
     "version": "2.0.0",
-    "tasks": [
+    "tasks": [        
         {
-            "label": "build",
+            "label": "build-src",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/AspnetReactContainer.csproj",
+                "${workspaceFolder}/src/AspnetReactContainer.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "options": {
+                "cwd": "${workspaceFolder}/src"
+            }
         },
         {
-            "label": "publish",
+            "label": "test",
             "command": "dotnet",
             "type": "process",
             "args": [
-                "publish",
-                "${workspaceFolder}/AspnetReactContainer.csproj",
+                "test",
+                "${workspaceFolder}/src-test/src-test.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "options": {
+                "cwd": "${workspaceFolder}/src-test"
+            }
         },
         {
-            "label": "watch",
+            "label": "watch-src",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/AspnetReactContainer.csproj",
+                "${workspaceFolder}/src/AspnetReactContainer.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "options": {
+                "cwd": "${workspaceFolder}/src"
+            }
         }
     ]
 }

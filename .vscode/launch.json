@@ -8,10 +8,10 @@
             "name": ".NET Core Watched Run",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "watch",
-            "program": "${workspaceFolder}/bin/container/Debug/netcoreapp3.1/AspnetReactContainer.dll",
+            "preLaunchTask": "watch-src",
+            "program": "${workspaceFolder}/src/bin/container/Debug/netcoreapp3.1/AspnetReactContainer.dll",
             "args": [],
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/src",
             "stopAtEntry": false,            
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
@@ -19,17 +19,17 @@
                 "COMPlus_ReadyToRun": "0"
             },
             "sourceFileMap": {
-                "/Views": "${workspaceFolder}/Views"
-            },
+                "/Views": "${workspaceFolder}/src/Views"
+            },            
         },
         {
             "name": ".NET Core Debug",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
-            "program": "${workspaceFolder}/bin/container/Debug/netcoreapp3.1/AspnetReactContainer.dll",
+            "preLaunchTask": "build-src",
+            "program": "${workspaceFolder}/src/bin/container/Debug/netcoreapp3.1/AspnetReactContainer.dll",
             "args": [],
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/src",
             "stopAtEntry": false,            
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
@@ -37,7 +37,7 @@
                 "COMPlus_ReadyToRun": "0"
             },
             "sourceFileMap": {
-                "/Views": "${workspaceFolder}/Views"
+                "/Views": "${workspaceFolder}/src/Views"
             },
         },
         {

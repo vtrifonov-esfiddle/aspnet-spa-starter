@@ -14,8 +14,8 @@ services:
 
     volumes:
       # Update this to wherever you want VS Code to mount the folder of your project
-      - ../src:/app:cached
-      - node_modules:/app/ClientApp/node_modules/
+      - ..:/app:cached
+      - node_modules:/app/src/ClientApp/node_modules/
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       dev-net:
@@ -26,20 +26,20 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     depends_on:
       - watched-react-run
-    working_dir: /app
+    working_dir: /app/src
   watched-react-run:   
     image: node:12
 
     volumes:
       # Update this to wherever you want VS Code to mount the folder of your project
-      - ../src/ClientApp:/app/ClientApp:cached
-      - node_modules:/app/ClientApp/node_modules/
+      - ../src/ClientApp:/app/src/ClientApp:cached
+      - node_modules:/app/src/ClientApp/node_modules/
     networks:
       dev-net:
     ports: 
       - 45001:3000
     container_name: react-container.dev
-    working_dir: /app/ClientApp
+    working_dir: /app/src/ClientApp
     command: /bin/sh -c "npm ci && npm start"
     environment:
       - NODE_ENV=development
