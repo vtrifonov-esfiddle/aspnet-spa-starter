@@ -40,11 +40,6 @@ jobs:
         with:
           name: test-results
           path: ./testResults/
-      - name: cleanup .net test project output
-        if: ${{ success() || failure() }}
-        run: |
-          sudo rm -rf ./unitTests/bin/
-          sudo rm -rf ./unitTests/obj/
            
   # This workflow contains a single job called "build"
   build:
