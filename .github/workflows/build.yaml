@@ -36,6 +36,7 @@ jobs:
       - name: run .net unit tests
         run: . ./.github/workflows/build/runDotnetUnitTests.sh
       - uses: actions/upload-artifact@v2
+        if: ${{ success() || failure() }}
         with:
           name: test-results
           path: ./testResults/
