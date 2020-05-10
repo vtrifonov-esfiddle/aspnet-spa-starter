@@ -32,15 +32,14 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: run react unit tests
-        run: |        
-          docker run  \
-          --volume $PWD/src/ClientApp:/app/ClientApp:cached \
-          --volume react-unit-tests-node_modules:/app/ClientApp/node_modules \
-          --workdir /app/ClientApp \
-          --name react-unit-tests \
-          --rm \
-          node:12 bash \
-          -c "npm ci && CI=true npm test"    
+        run: . ./.github/workflows/build/runReactUnitTests.sh
+      - name: run .net unit tests
+        run: . ./.github/workflows/build/runDotnetUnitTests.sh
+      - uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: ./testResults/
+           
   # This workflow contains a single job called "build"
   build:
     needs: [unit-test]      
