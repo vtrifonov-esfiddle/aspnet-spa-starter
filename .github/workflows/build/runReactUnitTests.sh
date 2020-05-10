@@ -10,5 +10,5 @@ docker run  \
     node:12 bash \
     -c "npm ci && CI=true npm test --reporters=\"jest-junit\""
 
-cp /app/src/ClientApp/junit.xml /app/testResults/reactUnitTests.xml
+cp $RepoRootPath/src/ClientApp/junit.xml /app/testResults/reactUnitTests.xml
      
