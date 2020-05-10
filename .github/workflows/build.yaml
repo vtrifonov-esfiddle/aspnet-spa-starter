@@ -44,7 +44,7 @@ jobs:
         if: ${{ success() || failure() }}
         run: |
           sudo rm -rf ./unitTests/bin/
-          sudo rm -rf ./unitTests/bin/
+          sudo rm -rf ./unitTests/obj/
            
   # This workflow contains a single job called "build"
   build:
