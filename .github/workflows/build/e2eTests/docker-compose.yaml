@@ -17,9 +17,13 @@ services:
     # so the command can simply add any arguments
     command: "--browser chrome"
     volumes:
-      - ../../../../src/ClientApp/e2eTests:/e2eTests:cached
+      - aspnet-react-cypress-e2etests:/e2eTests
+      - ../../../../src/ClientApp/e2eTests/cypress/integration:/e2eTests/cypress/integration:cached
+      - ../../../../src/ClientApp/e2eTests/cypress.json:/e2eTests/cypress.json:cached
     working_dir: /e2eTests
     networks:
       net:
 networks:
   net:
+volumes: 
+  aspnet-react-cypress-e2etests:

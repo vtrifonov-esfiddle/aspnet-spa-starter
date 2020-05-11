@@ -88,6 +88,7 @@ jobs:
           echo "VERSION=$FULL_VERSION" >> ./.github/workflows/build/e2eTests/.env
 
           cd ./.github/workflows/build/e2eTests
+          docker-compose down
           docker-compose run e2e-tests
           docker-compose down
   deploy-test:    
@@ -110,7 +111,7 @@ jobs:
 
         docker-compose -f ./.github/workflows/build/docker-compose.yaml down
         docker-compose -f ./.github/workflows/build/docker-compose.yaml up --detach
-        
+
     - name: set env var ASPNET_REACT_PRODUCTION_URI
       run: echo ::set-env name=ASPNET_REACT_PRODUCTION_URI::http://localhost:${{env.HOST_PORT}}
     - name: test deployment
