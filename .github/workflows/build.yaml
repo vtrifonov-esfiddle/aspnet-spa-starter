@@ -86,7 +86,7 @@ jobs:
           # setup environment variables for docker-compose
           echo "DOCKER_REPOSITORY=$DOCKER_REPOSITORY" > ./.github/workflows/build/e2eTests/.env
           echo "VERSION=$FULL_VERSION" >> ./.github/workflows/build/e2eTests/.env
-          echo "TEST_RESULTS_PATH=${{ runner.temp }}/e2eTestResults"
+          echo "TEST_RESULTS_PATH=${{ runner.temp }}/e2eTestResults" >> ./.github/workflows/build/e2eTests/.env
           cd ./.github/workflows/build/e2eTests
           docker-compose down
           docker-compose run e2e-tests
