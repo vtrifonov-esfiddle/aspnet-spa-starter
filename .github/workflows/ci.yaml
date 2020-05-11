@@ -8,14 +8,14 @@ on:
   push:
     branches: [ master ]
     paths-ignore:
-      - 'dev/**'
+      - '.devcontainer/**'
       - '.vscode/**'
       - 'README.md'
   pull_request:
     branches: [ master ]
-    paths-ignore:
+    paths-ignore:      
+      - '.devcontainer/**'
       - '.vscode/**'
-      - 'dev/**'
       - 'README.md'
 env:
   VERSION: v0.0.2
@@ -26,7 +26,7 @@ env:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   unit-tests:
-    runs-on: [self-hosted, build]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
@@ -42,7 +42,7 @@ jobs:
            
   build:
     needs: [unit-tests]      
-    runs-on: [self-hosted, build]
+    runs-on: ubuntu-latest
 
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -70,7 +70,7 @@ jobs:
         git tag $FULL_VERSION
         git push origin $FULL_VERSION
   e2e-tests:
-    runs-on: [self-hosted, deploy, docker-compose]
+    runs-on: ubuntu-latest
     needs: [build]
     steps:
       - uses: actions/checkout@v2
