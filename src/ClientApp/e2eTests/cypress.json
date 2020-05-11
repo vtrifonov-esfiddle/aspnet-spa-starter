@@ -1,4 +1,9 @@
 {
     "pluginsFile": false,
-    "supportFile": false
+    "supportFile": false,
+    "reporter": "xunit",
+    "reporterOptions": {
+        "output": "/e2eTestResults/cypressTestsOutput.xml",
+        "toConsole": true
+    }
 }

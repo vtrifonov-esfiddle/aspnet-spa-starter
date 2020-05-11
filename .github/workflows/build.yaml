@@ -91,6 +91,11 @@ jobs:
           docker-compose down
           docker-compose run e2e-tests
           docker-compose down
+      - uses: actions/upload-artifact@v2
+        if: ${{ success() || failure() }}
+        with:
+          name: e2e-test-results
+          path: ./e2eTestResults/cypressTestsOutput.xml
   deploy-test:    
     runs-on: [self-hosted, deploy, docker-compose]
     needs: [e2e-tests]

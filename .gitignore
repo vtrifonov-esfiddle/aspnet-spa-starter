@@ -1,1 +1,4 @@
-TestResults/
+testResults/
+e2eTestResults
+src/ClientApp/e2eTests/cypress/videos
+src/ClientApp/e2eTests/cypress/screenshots
