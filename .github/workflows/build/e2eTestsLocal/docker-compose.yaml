@@ -18,7 +18,7 @@ services:
     command: "--browser chrome"
     volumes:
       - ../../../../src/ClientApp/e2eTests:/e2eTests
-      - ../../../../e2eTestResults:/e2eTestResults
+      - ${TEST_RESULTS_PATH}:/e2eTestResults
     working_dir: /e2eTests
     networks:
       net:

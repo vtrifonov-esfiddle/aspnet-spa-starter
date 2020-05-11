@@ -86,11 +86,13 @@ jobs:
           # setup environment variables for docker-compose
           echo "DOCKER_REPOSITORY=$DOCKER_REPOSITORY" > ./.github/workflows/build/e2eTests/.env
           echo "VERSION=$FULL_VERSION" >> ./.github/workflows/build/e2eTests/.env
-
+          echo "TEST_RESULTS_PATH=${{ runner.temp }}/e2eTestResults"
           cd ./.github/workflows/build/e2eTests
           docker-compose down
-          docker-compose run --rm e2e-tests
+          docker-compose run e2e-tests
           docker-compose down
+          mkdir ${{ github.workspace}}/e2eTestResults
+          cp ${{ runner.temp }}/e2eTestResults/cypressTestsOutput.xml ${{github.workspace}}/e2eTestResults/cypressTestsOutput.xml
       - uses: actions/upload-artifact@v2
         if: ${{ success() || failure() }}
         with:
