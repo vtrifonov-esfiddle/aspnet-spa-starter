@@ -89,7 +89,7 @@ jobs:
 
           cd ./.github/workflows/build/e2eTests
           docker-compose down
-          docker-compose run e2e-tests
+          docker-compose run --rm e2e-tests
           docker-compose down
       - uses: actions/upload-artifact@v2
         if: ${{ success() || failure() }}

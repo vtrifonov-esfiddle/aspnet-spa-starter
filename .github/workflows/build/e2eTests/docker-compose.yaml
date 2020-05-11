@@ -20,7 +20,7 @@ services:
       - aspnet-react-cypress-e2etests:/e2eTests
       - ../../../../src/ClientApp/e2eTests/cypress/integration:/e2eTests/cypress/integration:cached
       - ../../../../src/ClientApp/e2eTests/cypress.json:/e2eTests/cypress.json:cached
-      - ../../../../e2eTestResults:/e2eTestResults:cached
+      - ../../../../e2eTestResults:/e2eTestResults
     working_dir: /e2eTests
     networks:
       net:
