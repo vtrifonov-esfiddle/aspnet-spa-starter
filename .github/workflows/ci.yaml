@@ -8,8 +8,6 @@ on:
   push:
     branches: [ master ]
     paths-ignore:
-      - '.github/workflows/deploy/**'
-      - '.github/workflows/deploy.yaml'
       - 'dev/**'
       - '.vscode/**'
       - 'README.md'
@@ -33,29 +31,26 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: run react unit tests
-        run: . ./.github/workflows/build/runReactUnitTests.sh
+        run: . ./.github/workflows/ci/runReactUnitTests.sh
       - name: run .net unit tests
-        run: . ./.github/workflows/build/runDotnetUnitTests.sh
+        run: . ./.github/workflows/ci/runDotnetUnitTests.sh
       - uses: actions/upload-artifact@v2
         if: ${{ success() || failure() }}
         with:
           name: test-results
           path: ./testResults/
            
-  # This workflow contains a single job called "build"
   build:
     needs: [unit-tests]      
-    # The type of runner that the job will run on
     runs-on: [self-hosted, build]
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
     # Runs a set of commands using the runners shell
     - name: Docker build
-      run: docker build --file ./.github/workflows/build/Dockerfile --tag $IMAGE_ID:$VERSION --tag $IMAGE_ID:$FULL_VERSION $CONTEXT
+      run: docker build --file ./.github/workflows/ci/Dockerfile --tag $IMAGE_ID:$VERSION --tag $IMAGE_ID:$FULL_VERSION $CONTEXT
       env:
         CONTEXT: ./src
     - name: Log into registry
@@ -84,10 +79,10 @@ jobs:
           echo "Version: $FULL_VERSION"
         
           # setup environment variables for docker-compose
-          echo "DOCKER_REPOSITORY=$DOCKER_REPOSITORY" > ./.github/workflows/build/e2eTests/.env
-          echo "VERSION=$FULL_VERSION" >> ./.github/workflows/build/e2eTests/.env
-          echo "TEST_RESULTS_PATH=${{ runner.temp }}/e2eTestResults" >> ./.github/workflows/build/e2eTests/.env
-          cd ./.github/workflows/build/e2eTests
+          echo "DOCKER_REPOSITORY=$DOCKER_REPOSITORY" > ./.github/workflows/ci/e2eTests/.env
+          echo "VERSION=$FULL_VERSION" >> ./.github/workflows/ci/e2eTests/.env
+          echo "TEST_RESULTS_PATH=${{ runner.temp }}/e2eTestResults" >> ./.github/workflows/ci/e2eTests/.env
+          cd ./.github/workflows/ci/e2eTests
           docker-compose down
           docker-compose run e2e-tests
           docker-compose down
@@ -98,29 +93,3 @@ jobs:
         with:
           name: e2e-test-results
           path: ./e2eTestResults/cypressTestsOutput.xml
-  deploy-test:    
-    runs-on: [self-hosted, deploy, docker-compose]
-    needs: [e2e-tests]
-    steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
-
-    - name: Log into registry
-      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
-    - name: docker-compose up
-      run: |        
-        echo "Version: $FULL_VERSION"
-        
-        # setup environment variables for docker-compose
-        echo "DOCKER_REPOSITORY=$DOCKER_REPOSITORY" > ./.github/workflows/build/.env
-        echo "VERSION=$FULL_VERSION" >> ./.github/workflows/build/.env
-        echo "HOST_PORT=$HOST_PORT" >> ./.github/workflows/build/.env
-
-        docker-compose -f ./.github/workflows/build/docker-compose.yaml down
-        docker-compose -f ./.github/workflows/build/docker-compose.yaml up --detach
-
-    - name: set env var ASPNET_REACT_PRODUCTION_URI
-      run: echo ::set-env name=ASPNET_REACT_PRODUCTION_URI::http://localhost:${{env.HOST_PORT}}
-    - name: test deployment
-      run: |        
-        bash ./.github/workflows/build/testDeployment.sh
