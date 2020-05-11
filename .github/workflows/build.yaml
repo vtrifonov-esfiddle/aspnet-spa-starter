@@ -26,7 +26,7 @@ env:
   HOST_PORT: 45999
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  unit-test:
+  unit-tests:
     runs-on: [self-hosted, build]
     steps:
       - uses: actions/checkout@v2
@@ -73,6 +73,22 @@ jobs:
         echo FULL_VERSION=$FULL_VERSION
         git tag $FULL_VERSION
         git push origin $FULL_VERSION
+  e2e-tests:
+    runs-on: [self-hosted, deploy, docker-compose]
+    needs: [build]
+    steps:
+      - uses: actions/checkout@v2
+      - name: run e2e tests
+        run: |
+          echo "Version: $FULL_VERSION"
+        
+          # setup environment variables for docker-compose
+          echo "DOCKER_REPOSITORY=$DOCKER_REPOSITORY" > ./.github/workflows/build/e2eTests/.env
+          echo "VERSION=$FULL_VERSION" >> ./.github/workflows/build/e2eTests/.env
+
+          cd ./.github/workflows/build/e2eTests
+          docker-compose run e2e-tests
+          docker-compose down
   test:    
     runs-on: [self-hosted, deploy, docker-compose]
     needs: [build]
