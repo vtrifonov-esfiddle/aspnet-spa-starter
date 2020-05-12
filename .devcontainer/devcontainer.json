@@ -4,7 +4,7 @@
 {
 	"name": "ASP.NET React Dev",
 	"dockerComposeFile": "docker-compose.yml",
-	"service": "watched-aspnet-run",
+	"service": "aspnet-react-container",
 	"workspaceFolder": "/app",
 	
 	// Set *default* container specific settings.json values on container create.

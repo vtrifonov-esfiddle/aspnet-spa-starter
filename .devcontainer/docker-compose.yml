@@ -1,6 +1,6 @@
 version: '3'
 services:
-  watched-aspnet-run:
+  aspnet-react-container:
     # Uncomment the next line to use a non-root user for all processes. You can also
     # simply use the "remoteUser" property in devcontainer.json if you just want VS Code
     # and its sub-processes (terminals, tasks, debugging) to execute as the user. On Linux,
@@ -25,9 +25,9 @@ services:
       - WATCHED_REACT_URI=http://watched-react-run:3000/
       - ASPNETCORE_ENVIRONMENT=Development
     depends_on:
-      - watched-react-run
+      - react-dev-server
     working_dir: /app/src
-  watched-react-run:   
+  react-dev-server:   
     image: node:12
 
     volumes:
@@ -38,7 +38,7 @@ services:
       dev-net:
     ports: 
       - 45001:3000
-    container_name: react-container.dev
+    container_name: react-dev-server.dev
     working_dir: /app/src/ClientApp
     command: /bin/sh -c "npm ci && npm start"
     environment:
