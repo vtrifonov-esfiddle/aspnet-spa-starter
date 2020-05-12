@@ -1,0 +1,1 @@
+docker-compose --project-name aspnet-react-container_devcontainer -f $PSScriptRoot\docker-compose.yml up -d --build
