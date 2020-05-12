@@ -21,7 +21,7 @@ env:
   VERSION: v0.0.2
   FULL_VERSION: v0.0.2-${{ github.run_number }}
   IMAGE_ID: docker.pkg.github.com/${{ github.repository }}/aspnet-react-container
-  DOCKER_REPOSITORY: docker.pkg.github.com/${{ github.repository }}  
+  DOCKER_REGISTRY: docker.pkg.github.com/${{ github.repository }}  
   HOST_PORT: 45999
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -83,7 +83,7 @@ jobs:
           echo "Version: $FULL_VERSION"
         
           # setup environment variables for docker-compose
-          echo "DOCKER_REPOSITORY=$DOCKER_REPOSITORY" > ./.github/workflows/ci/e2eTests/.env
+          echo "DOCKER_REGISTRY=$DOCKER_REGISTRY" > ./.github/workflows/ci/e2eTests/.env
           echo "VERSION=$FULL_VERSION" >> ./.github/workflows/ci/e2eTests/.env
           echo "TEST_RESULTS_PATH=${{ runner.temp }}/e2eTestResults" >> ./.github/workflows/ci/e2eTests/.env
           cd ./.github/workflows/ci/e2eTests

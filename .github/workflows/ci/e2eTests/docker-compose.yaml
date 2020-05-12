@@ -1,7 +1,7 @@
 version: '3'
 services:
   aspnet-react-cypress:
-    image: ${DOCKER_REPOSITORY}/aspnet-react-container:${VERSION}
+    image: ${DOCKER_REGISTRY}/aspnet-react-container:${VERSION}
     networks:
       net:
     container_name: aspnet-react-cypress
