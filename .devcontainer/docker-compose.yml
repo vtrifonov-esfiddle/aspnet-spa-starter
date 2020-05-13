@@ -10,7 +10,8 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile
-    image: docker.pkg.github.com/${GITHUB_USERNAME}/${GITHUB_REPO}/aspnet-react-base:dev
+    
+    image: devcontainer_aspnet-react-base:dev
 
     volumes:
       # Update this to wherever you want VS Code to mount the folder of your project
@@ -24,8 +25,7 @@ services:
     environment:
       - WATCHED_REACT_URI=http://watched-react-run:3000/
       - ASPNETCORE_ENVIRONMENT=Development
-      - DOCKER_REGISTRY=docker.pkg.github.com/${GITHUB_USERNAME}/${GITHUB_REPO}
-      - GITHUB_USERNAME=${GITHUB_USERNAME}
+      - REPO_ROOT_DIR=/app
     depends_on:
       - react-dev-server
     working_dir: /app/src

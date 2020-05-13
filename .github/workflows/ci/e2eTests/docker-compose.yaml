@@ -18,8 +18,8 @@ services:
     command: "--browser chrome"
     volumes:
       - aspnet-react-cypress-e2etests:/e2eTests
-      - ../../../../src/ClientApp/e2eTests/cypress/integration:/e2eTests/cypress/integration:cached
-      - ../../../../src/ClientApp/e2eTests/cypress.json:/e2eTests/cypress.json:cached
+      - ${WORKSPACE_DIR_DOCKER_MOUNT}/src/ClientApp/e2eTests/cypress/integration:/e2eTests/cypress/integration:cached
+      - ${WORKSPACE_DIR_DOCKER_MOUNT}/src/ClientApp/e2eTests/cypress.json:/e2eTests/cypress.json:cached
       - ${TEST_RESULTS_PATH}:/e2eTestResults
     working_dir: /e2eTests
     networks:

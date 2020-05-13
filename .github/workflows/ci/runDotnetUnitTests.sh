@@ -1,10 +1,8 @@
-# RepoRootPath=/host_mnt/c/GithubRepos/aspnet-react-container
-RepoRootPath=$PWD
 docker run \
-    --volume "$RepoRootPath/unitTests:/unitTests:cached" \
+    --volume "$WORKSPACE_DIR_DOCKER_MOUNT/unitTests:/unitTests:cached" \
     --volume "aspnet-unit-tests-bin:/unitTests/bin" \
     --volume "aspnet-unit-tests-obj:/unitTests/obj" \
-    --volume "$RepoRootPath/testResults:/testResults" \
+    --volume "$WORKSPACE_DIR_DOCKER_MOUNT/testResults:/testResults" \
     --workdir /unitTests \
     --name dotnet-unit-tests \
     --rm \

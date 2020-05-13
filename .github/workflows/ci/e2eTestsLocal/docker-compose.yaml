@@ -17,7 +17,7 @@ services:
     # so the command can simply add any arguments
     command: "--browser chrome"
     volumes:
-      - ../../../../src/ClientApp/e2eTests:/e2eTests
+      - ${WORKSPACE_DIR_DOCKER_MOUNT}/src/ClientApp/e2eTests:/e2eTests
       - ${TEST_RESULTS_PATH}:/e2eTestResults
     working_dir: /e2eTests
     networks:
