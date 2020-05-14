@@ -17,10 +17,11 @@
             }
         },
         {
-            "label": "test",
+            "label": "xUnit tests",
             "command": "dotnet",
             "type": "process",
             "args": [
+                "watch",
                 "test",
                 "${workspaceFolder}/unitTests/UnitTests.csproj",
                 "/property:GenerateFullPaths=true",
@@ -32,15 +33,42 @@
             }
         },
         {
+            "label": "e2e tests",
+            "command": "docker",
+            "type": "shell",
+            "args": [
+                "exec",
+                "e2e-tests-dev",
+                "cypress",
+                "run",
+                "browser--chrome"
+            ],
+            "problemMatcher": "$node-sass"
+        },
+        {
+            "label": "jest tests",
+            "command": "npm",
+            "type": "shell",
+            "args": [
+                "test"
+            ],
+            "problemMatcher": "$tsc",
+            "options": {
+                "cwd": "${workspaceFolder}/src/ClientApp"
+            }
+        },
+        {
             "label": "watch-src",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "watch",
                 "run",
+                "--urls",
+                "http://0.0.0.0:5000;https://0.0.0.0:5001",
                 "${workspaceFolder}/src/AspnetReactContainer.csproj",
                 "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "/consoleloggerparameters:NoSummary",
             ],
             "problemMatcher": "$msCompile",
             "options": {

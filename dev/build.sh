@@ -2,11 +2,11 @@
 
 function build() {
     VERSION=$1
-    ContextDir="../../../../src"
+    ContextDir="/app/src"
     ImageId="$DOCKER_REGISTRY/aspnet-react-container"
-    DockerfilePath="../Dockerfile"
+    DockerfilePath="/app/.github/workflows/ci/Dockerfile"
     docker build -f $DockerfilePath -t $ImageId:$VERSION $ContextDir
     #docker push $ImageId:$VERSION
 }
 
-build "v0.0.2-local"
+build "v0.1.0-local"

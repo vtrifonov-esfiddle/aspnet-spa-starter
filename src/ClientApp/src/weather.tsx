@@ -10,7 +10,6 @@ export interface IWeather {
   date: string;
 }
 
-
 export function Weather(props: IProps) {
   const [weather, setWeather] = useState(null);
 

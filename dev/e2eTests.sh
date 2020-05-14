@@ -1,0 +1,1 @@
+docker exec e2e-tests-dev cypress run browser--chrome

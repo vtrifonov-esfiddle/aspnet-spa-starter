@@ -63,8 +63,8 @@ namespace AspnetReactContainer
 
                 if (env.IsDevelopment())
                 {
-                    string watchedReactUri = Configuration.GetValue<string>("WATCHED_REACT_URI");
-                    spa.UseProxyToSpaDevelopmentServer(watchedReactUri);
+                    string reactDevServerUri = Configuration.GetValue<string>("REACT_DEV_SERVER_URI");
+                    spa.UseProxyToSpaDevelopmentServer(reactDevServerUri);
                 }
             });
         }

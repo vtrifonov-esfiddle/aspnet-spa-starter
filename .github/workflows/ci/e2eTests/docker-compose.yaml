@@ -12,7 +12,7 @@ services:
       - aspnet-react-cypress
     environment:
       - CYPRESS_baseUrl=http://aspnet-react-cypress:80
-    container_name: cypress
+    container_name: e2e-tests-ci
     # "cypress/included" images have entrypoint set to globally installed cypress
     # so the command can simply add any arguments
     command: "--browser chrome"

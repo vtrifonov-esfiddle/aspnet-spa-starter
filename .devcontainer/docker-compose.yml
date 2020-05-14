@@ -23,12 +23,16 @@ services:
     container_name: aspnet-react-container.dev
     command: /bin/sh -c "dotnet restore && while sleep 1000; do :; done"
     environment:
-      - WATCHED_REACT_URI=http://watched-react-run:3000/
+      - REACT_DEV_SERVER_URI=http://react-dev-server:3000/
       - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:5000;http://+:5001
       - REPO_ROOT_DIR=/app
     depends_on:
       - react-dev-server
     working_dir: /app/src
+    ports:
+      - 5000:5000
+      - 5001:5001
   react-dev-server:   
     image: node:12
 
@@ -38,8 +42,6 @@ services:
       - node_modules:/app/src/ClientApp/node_modules/
     networks:
       dev-net:
-    ports: 
-      - 45001:3000
     container_name: react-dev-server.dev
     working_dir: /app/src/ClientApp
     command: /bin/sh -c "npm ci && npm start"
@@ -49,6 +51,23 @@ services:
       # https://github.com/paulmillr/chokidar#performance
       #- CHOKIDAR_USEPOLLING=true
       #- CHOKIDAR_INTERVAL=1000
+
+  e2e-tests-dev:
+    image: "cypress/included:4.5.0"
+    depends_on:
+      - aspnet-react-container
+    environment:
+      - CYPRESS_baseUrl=http://aspnet-react-container:5000
+    container_name: e2e-tests-dev
+    # "cypress/included" images have entrypoint set to globally installed cypress
+    # so the command can simply add any arguments
+    entrypoint: /bin/sh -c "while sleep 1000; do :; done"
+    volumes:
+      - ../src/ClientApp/e2eTests:/e2eTests
+      - ../e2eTestResults:/e2eTestResults
+    working_dir: /e2eTests
+    networks:
+      dev-net:
 networks:
   dev-net:
 volumes:
