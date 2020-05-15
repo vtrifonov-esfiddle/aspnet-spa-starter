@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [        
         {
-            "label": "build-src",
+            "label": "dotnet build src",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -58,7 +58,7 @@
             }
         },
         {
-            "label": "watch-src",
+            "label": "dotnet watch src",
             "command": "dotnet",
             "type": "process",
             "args": [

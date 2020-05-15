@@ -10,16 +10,13 @@ on:
     paths-ignore:
       - '.devcontainer/**'
       - '.vscode/**'
+      - 'dev/**'
       - 'README.md'
   pull_request:
     branches: [ master ]
-    paths-ignore:      
-      - '.devcontainer/**'
-      - '.vscode/**'
-      - 'README.md'
 env:
-  VERSION: v0.0.2
-  FULL_VERSION: v0.0.2-${{ github.run_number }}
+  VERSION: v0.1.0
+  FULL_VERSION: v0.1.0-${{ github.run_number }}
   IMAGE_ID: docker.pkg.github.com/${{ github.repository }}/aspnet-react-container
   DOCKER_REGISTRY: docker.pkg.github.com/${{ github.repository }}
   HOST_PORT: 45999
@@ -95,7 +92,7 @@ jobs:
           echo "TEST_RESULTS_PATH=${{ runner.temp }}/e2eTestResults" >> ./.github/workflows/ci/e2eTests/.env
           echo "WORKSPACE_DIR_DOCKER_MOUNT=${{github.workspace}}" >> ./.github/workflows/ci/e2eTests/.env
           cd ./.github/workflows/ci/e2eTests
-          docker-compose down
+
           docker-compose run e2e-tests
           docker-compose down
           mkdir ${{ github.workspace}}/e2eTestResults
