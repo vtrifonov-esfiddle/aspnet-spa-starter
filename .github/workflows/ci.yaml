@@ -20,9 +20,9 @@ on:
       - 'dev/**'
       - 'README.md'
 env:
-  VERSION: v0.1.0
-  FULL_VERSION: v0.1.0-${{ github.run_number }}
-  IMAGE_ID: docker.pkg.github.com/${{ github.repository }}/aspnet-react-container
+  VERSION: v0.3.0
+  FULL_VERSION: v0.3.0-${{ github.run_number }}
+  IMAGE_ID: docker.pkg.github.com/${{ github.repository }}/aspnet-spa-starter
   DOCKER_REGISTRY: docker.pkg.github.com/${{ github.repository }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -32,8 +32,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: run react unit tests
-        run: . ./.github/workflows/ci/runReactUnitTests.sh
+      - name: run spa unit tests
+        run: . ./.github/workflows/ci/runSpaUnitTests.sh
         env:
           WORKSPACE_DIR_DOCKER_MOUNT: ${{github.workspace}}
           REPO_ROOT_DIR: ${{github.workspace}}

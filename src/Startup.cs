@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace AspnetReactContainer
+namespace AspnetSpaContainer
 {
     public class Startup
     {
@@ -23,7 +22,7 @@ namespace AspnetReactContainer
 
             services.AddControllersWithViews();
 
-            // In production, the React files will be served from this directory
+            // In production, the SPA files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/build";
@@ -63,8 +62,8 @@ namespace AspnetReactContainer
 
                 if (env.IsDevelopment())
                 {
-                    string reactDevServerUri = Configuration.GetValue<string>("REACT_DEV_SERVER_URI");
-                    spa.UseProxyToSpaDevelopmentServer(reactDevServerUri);
+                    string spaDevServerUri = Configuration.GetValue<string>("SPA_DEV_SERVER_URI");
+                    spa.UseProxyToSpaDevelopmentServer(spaDevServerUri);
                 }
             });
         }

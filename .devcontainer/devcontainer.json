@@ -2,9 +2,9 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.101.1/containers/docker-in-docker-compose
 // If you want to run as a non-root user in the container, see .devcontainer/docker-compose.yml.
 {
-	"name": "ASP.NET React Dev",
+	"name": "ASP.NET SPA Starter",
 	"dockerComposeFile": "docker-compose.yml",
-	"service": "aspnet-react-container",
+	"service": "aspnet-spa-starter",
 	"workspaceFolder": "/app",
 	
 	// Set *default* container specific settings.json values on container create.

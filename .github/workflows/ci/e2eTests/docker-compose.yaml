@@ -1,23 +1,23 @@
 version: '3'
 services:
-  aspnet-react-cypress:
-    image: ${DOCKER_REGISTRY}/aspnet-react-container:${VERSION}
+  aspnet-spa-cypress:
+    image: ${DOCKER_REGISTRY}/aspnet-spa-starter:${VERSION}
     networks:
       net:
-    container_name: aspnet-react-cypress
+    container_name: aspnet-spa-cypress
   # this container will run Cypress test using Chrome browser
   e2e-tests:
     image: "cypress/included:4.5.0"
     depends_on:
-      - aspnet-react-cypress
+      - aspnet-spa-cypress
     environment:
-      - CYPRESS_baseUrl=http://aspnet-react-cypress:80
+      - CYPRESS_baseUrl=http://aspnet-spa-cypress:80
     container_name: e2e-tests-ci
     # "cypress/included" images have entrypoint set to globally installed cypress
     # so the command can simply add any arguments
     command: "--browser chrome"
     volumes:
-      - aspnet-react-cypress-e2etests:/e2eTests
+      - aspnet-spa-cypress-e2etests:/e2eTests
       - ${WORKSPACE_DIR_DOCKER_MOUNT}/src/ClientApp/e2eTests/cypress/integration:/e2eTests/cypress/integration:cached
       - ${WORKSPACE_DIR_DOCKER_MOUNT}/src/ClientApp/e2eTests/cypress.json:/e2eTests/cypress.json:cached
       - ${TEST_RESULTS_PATH}:/e2eTestResults
@@ -27,4 +27,4 @@ services:
 networks:
   net:
 volumes: 
-  aspnet-react-cypress-e2etests:
+  aspnet-spa-cypress-e2etests:

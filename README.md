@@ -1,37 +1,29 @@
-# aspnet-react-container
+# aspnet-spa-starter
 
-![CI](https://github.com/vtrifonov-esfiddle/aspnet-react-container/workflows/CI/badge.svg)
+A starter template for development inside Docker containers with Visual Studio Code using
+- tech stack
+  - ASP .NET Core
+  - SPA (React/Vue.js)
+- CI with github actions 
 
-## Developement in Container
+![CI](https://github.com/vtrifonov-esfiddle/aspnet-spa-starter/workflows/CI/badge.svg)
 
-### Watched Build
+## Prerequisites
 
-```
-.\dev\watchedBuild.ps1
-```
+- [Docker for Desktop](https://www.docker.com/products/docker-desktop)
+- [Visual Studio Code](https://code.visualstudio.com/)
+  - VS Code extentions:
+    - [Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)
 
-### Run .NET Tests
+## Getting started
 
-```
-.\dev\watchedTest.ps1
-```
+Steps to start developing using Visual Studio Code
 
-## Production Container
-
-### Build
-
-```
-.\build\build.ps1
-```
-
-### Local Docker Run
-
-```
-.\build\run.ps1
-```
-
-### Run in Kubernetes
-
-```
-.\production\deployment-up.ps1
-```
+1. [Use this template](https://github.com/vtrifonov-esfiddle/aspnet-spa-starter/generate)
+2. Clone the repo generated from the template locally
+    ```
+    git clone https://github.com/<your github username>/<your repo name>.git
+    ```
+3. Open the repo root in VS Code
+4. Press F1
+5. `>Remote-containers: Open Folder in Container`

@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/AspnetReactContainer.csproj",
+                "${workspaceFolder}/src/AspnetSpaContainer.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -66,7 +66,7 @@
                 "run",
                 "--urls",
                 "http://0.0.0.0:5000;https://0.0.0.0:5001",
-                "${workspaceFolder}/src/AspnetReactContainer.csproj",
+                "${workspaceFolder}/src/AspnetSpaContainer.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
             ],
