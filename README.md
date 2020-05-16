@@ -24,6 +24,8 @@ Steps to start developing using Visual Studio Code
     ```
     git clone https://github.com/<your github username>/<your repo name>.git
     ```
-3. Open the repo root in VS Code
-4. Press F1
-5. `>Remote-Containers: Reopen in Container`
+3. Open the repo root directory in VS Code
+4. Press F1 in VS Code
+5. type `>Remote-Containers: Reopen in Container`
+6. Press F5 in VS Code to start debugging
+7. On your dev machine navigate to http://localhost:5000/

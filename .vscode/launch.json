@@ -5,24 +5,6 @@
     "version": "0.2.0",
     "configurations": [        
         {
-            "name": ".NET Core Watched Run",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "dotnet watch src",
-            "program": "${workspaceFolder}/src/bin/container/Debug/netcoreapp3.1/AspnetSpaContainer.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/src",
-            "stopAtEntry": false,            
-            "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development",
-                "COMPlus_ZapDisable": "1",
-                "COMPlus_ReadyToRun": "0"
-            },
-            "sourceFileMap": {
-                "/Views": "${workspaceFolder}/src/Views"
-            },            
-        },
-        {
             "name": ".NET Core Debug",
             "type": "coreclr",
             "request": "launch",
@@ -39,6 +21,24 @@
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/src/Views"
             },
+        },
+        {
+            "name": ".NET Core Watched Run",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "dotnet watch src",
+            "program": "${workspaceFolder}/src/bin/container/Debug/netcoreapp3.1/AspnetSpaContainer.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src",
+            "stopAtEntry": false,            
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "COMPlus_ZapDisable": "1",
+                "COMPlus_ReadyToRun": "0"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/src/Views"
+            },            
         },
         {
             "name": ".NET Core Attach",
