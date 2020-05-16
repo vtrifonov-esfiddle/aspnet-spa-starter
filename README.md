@@ -29,3 +29,13 @@ Steps to start developing using Visual Studio Code
 5. type `>Remote-Containers: Reopen in Container`
 6. Press F5 in VS Code to start debugging
 7. On your dev machine navigate to http://localhost:5000/
+
+## Push/Pull from your aspnet-spa-starter Docker Registry
+
+1. Create PAT(personal access token) with the following permissions via https://github.com/settings/tokens
+    - read:packages
+    - repo, write:packages
+2. Login to the registry using your `<github username>` and `<PAT>`
+```
+docker login docker.pkg.github.com -u <github username> -p "<PAT>"
+```
