@@ -44,7 +44,7 @@ services:
       dev-net:
     container_name: spa-dev-server.dev
     working_dir: /app/src/ClientApp
-    command: /bin/sh -c "npm ci && npm start"
+    command: /bin/sh -c "bash startSpaDevServer.sh"
     environment:
       - NODE_ENV=development
       # necessary for to webpack hot module replacement to pick up watched source changes done outside the docker container

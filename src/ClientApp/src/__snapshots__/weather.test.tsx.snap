@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Weather compile with mock data 1`] = `"<div><h2 class=\\"summary\\">Forecast: Test London mild weather</h2><strong>-5</strong> °C<br>Date: Fri Apr 05 2019</div>"`;
