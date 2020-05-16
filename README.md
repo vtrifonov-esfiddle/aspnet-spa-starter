@@ -26,4 +26,4 @@ Steps to start developing using Visual Studio Code
     ```
 3. Open the repo root in VS Code
 4. Press F1
-5. `>Remote-containers: Open Folder in Container`
+5. `>Remote-Containers: Reopen in Container`
