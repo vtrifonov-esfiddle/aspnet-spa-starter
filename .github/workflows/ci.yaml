@@ -14,12 +14,17 @@ on:
       - 'README.md'
   pull_request:
     branches: [ master ]
+    paths-ignore:
+      - '.devcontainer/**'
+      - '.vscode/**'
+      - 'dev/**'
+      - 'README.md'
 env:
   VERSION: v0.1.0
   FULL_VERSION: v0.1.0-${{ github.run_number }}
   IMAGE_ID: docker.pkg.github.com/${{ github.repository }}/aspnet-react-container
   DOCKER_REGISTRY: docker.pkg.github.com/${{ github.repository }}
-  HOST_PORT: 45999
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   unit-tests:
