@@ -17,6 +17,7 @@ services:
       # Update this to wherever you want VS Code to mount the folder of your project
       - ..:/app:cached
       - node_modules:/app/src/ClientApp/node_modules/
+      - spa-creation-dir:/app/src/ClientApp/aspnet-spa-starter/
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       dev-net:
@@ -72,6 +73,7 @@ networks:
   dev-net:
 volumes:
   node_modules:
+  spa-creation-dir:
 
 
 
