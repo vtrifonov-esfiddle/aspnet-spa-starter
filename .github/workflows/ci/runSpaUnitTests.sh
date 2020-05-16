@@ -5,7 +5,7 @@ docker run  \
     --name spa-unit-tests \
     --rm \
     node:12 bash \
-    -c "npm ci && CI=true npm test --reporters=\"jest-junit\""
+    -c "npm ci && CI=true run-script test:unit --reporters=\"jest-junit\""
 
 mkdir $REPO_ROOT_DIR/testResults
 cp $REPO_ROOT_DIR/src/ClientApp/junit.xml $REPO_ROOT_DIR/testResults/spaUnitTests.xml

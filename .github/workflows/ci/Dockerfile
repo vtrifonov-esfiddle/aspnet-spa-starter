@@ -10,7 +10,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.1 as aspnetBuild
 
 WORKDIR /appSource
 COPY . /appSource
-COPY --from=nodeBuild /appSource/ClientApp/build /appSource/ClientApp/build
+COPY --from=nodeBuild /appSource/ClientApp/dist /appSource/ClientApp/build
 
 RUN dotnet restore
 RUN dotnet publish -c Release -o /appPublish

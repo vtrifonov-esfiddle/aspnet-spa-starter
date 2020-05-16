@@ -1,10 +1,29 @@
-# Create SPA steps
+# aspnet-spa-starter
 
-## React
-
+## Project setup
 ```
-cd /app/src/ClientApp
-npx create-react-app aspnet-spa-starter --template typescript
+npm install
 ```
 
-- docs in [Create React App](https://github.com/facebook/create-react-app).
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Run your unit tests
+```
+npm run test:unit
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
