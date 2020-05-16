@@ -1,5 +1,7 @@
 # aspnet-react-container
 
+![CI](https://github.com/vtrifonov-esfiddle/aspnet-react-container/workflows/CI/badge.svg)
+
 ## Developement in Container
 
 ### Watched Build
