@@ -2,6 +2,8 @@
 describe('aspnet-spa-starter home page', () => {
     it('should be accessible', () => {
       cy.visit('/')
-      cy.get('#root').should('be.visible')
+      cy.get('app-root')
+        .contains('aspnet-spa-starter app is running!')
+        .should('be.visible')
     })    
   })
