@@ -17,7 +17,8 @@
 		"msjsdiag.debugger-for-chrome",
 		"dbaeumer.vscode-eslint",
 		"eamodio.gitlens",
-		"ms-azuretools.vscode-docker"
+		"ms-azuretools.vscode-docker",
+		"octref.vetur"
 	],
 	"remote.extensionKind": {
 		"ms-azuretools.vscode-docker": [ "ui" ],
