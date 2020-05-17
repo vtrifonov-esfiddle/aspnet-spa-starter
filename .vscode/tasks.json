@@ -50,7 +50,8 @@
             "command": "npm",
             "type": "shell",
             "args": [
-                "test"
+                "run-script",
+                "test:unit"
             ],
             "problemMatcher": "$tsc",
             "options": {
