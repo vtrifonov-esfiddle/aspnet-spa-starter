@@ -1,5 +1,5 @@
 docker build  \
-  --file karmaUnitTests.Dockerfile \
+  --file $REPO_ROOT_DIR/.github/workflows/ci/karmaUnitTests.Dockerfile \
   --tag spa-karma-unit-tests:latest \
   $REPO_ROOT_DIR/src
 
