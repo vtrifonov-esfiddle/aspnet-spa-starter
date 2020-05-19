@@ -338,6 +338,15 @@
 
   </div>
 
+  <h2>Weather</h2>
+  <div class="weather" *ngIf="!!weather">
+    <ul>
+      <li>Summary: {{weather.summary}}</li>
+      <li>Temperature: {{weather.temperatureC}} °C</li>
+      <li>Temperature: {{weather.temperatureF}} °F</li>
+      <li>Date: {{weather.date.toDateString()}}</li>
+    </ul>
+  </div>
   <!-- Resources -->
   <h2>Resources</h2>
   <p>Here are some links to help you get started:</p>
