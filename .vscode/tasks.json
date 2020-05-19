@@ -46,10 +46,11 @@
             "problemMatcher": "$node-sass"
         },
         {
-            "label": "jest tests",
+            "label": "karma unit tests",
             "command": "npm",
             "type": "shell",
             "args": [
+                "run",
                 "test"
             ],
             "problemMatcher": "$tsc",

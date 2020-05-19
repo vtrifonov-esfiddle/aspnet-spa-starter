@@ -1,1 +1,1 @@
-npm run-script ng serve -- --host spa-dev-server
+npm run ng serve -- --host spa-dev-server
