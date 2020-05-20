@@ -1,6 +1,6 @@
 # aspnet-spa-starter
 
-A starter template for development for ASP .NET Core SPA inside Docker containers with Visual Studio Code
+A starter template for development of ASP .NET Core SPA inside Docker containers with Visual Studio Code
 - tech stack
   - ASP .NET Core
   - SPA (React/Vue.js/Angular)
