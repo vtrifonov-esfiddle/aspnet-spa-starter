@@ -1,1 +1,1 @@
-docker exec e2e-tests-dev cypress run --browser chrome
+docker exec -e CYPRESS_baseUrl=http://aspnet-spa-starter:80 e2e-tests-dev cypress run --browser chrome

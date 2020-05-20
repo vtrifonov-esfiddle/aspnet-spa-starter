@@ -3,14 +3,14 @@ FROM node:12 AS nodeBuild
 WORKDIR /appSource/ClientApp
 COPY ./ClientApp /appSource/ClientApp
 
-RUN npm install
-RUN npm run-script build
+RUN npm ci
+RUN npm run build
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 as aspnetBuild
 
 WORKDIR /appSource
 COPY . /appSource
-COPY --from=nodeBuild /appSource/ClientApp/dist /appSource/ClientApp/build
+COPY --from=nodeBuild /appSource/ClientApp/dist /appSource/ClientApp/dist
 
 RUN dotnet restore
 RUN dotnet publish -c Release -o /appPublish
