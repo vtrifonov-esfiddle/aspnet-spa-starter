@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [        
         {
-            "label": "dotnet build src",
+            "label": "build",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -58,14 +58,12 @@
             }
         },
         {
-            "label": "dotnet watch src",
+            "label": "watched run",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "watch",
                 "run",
-                "--urls",
-                "http://0.0.0.0:5000;https://0.0.0.0:5001",
                 "${workspaceFolder}/src/AspnetSpaContainer.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
