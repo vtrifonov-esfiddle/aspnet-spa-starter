@@ -25,7 +25,7 @@ namespace AspnetSpaContainer
             // In production, the SPA files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp/build";
+                configuration.RootPath = "ClientApp/dist";
             });
         }
 
