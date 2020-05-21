@@ -17,7 +17,8 @@ services:
       # Update this to wherever you want VS Code to mount the folder of your project
       - ..:/app:cached
       - node_modules:/app/src/ClientApp/node_modules/
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock # forward host Docker socket to access docker CLI
+      - docker-config:/root/.docker/ # necessary to store the docker login credentials in /root/.docker/.config.json
     networks:
       dev-net:
     container_name: aspnet-spa-starter.dev
@@ -40,7 +41,7 @@ services:
       - node_modules:/app/src/ClientApp/node_modules/
     networks:
       dev-net:
-    container_name: spa-dev-server.dev
+    container_name: spa-dev-server
     working_dir: /app/src/ClientApp
     command: /bin/sh -c "bash startSpaDevServer.sh"
     environment:
@@ -70,6 +71,6 @@ networks:
   dev-net:
 volumes:
   node_modules:
-
+  docker-config:
 
 

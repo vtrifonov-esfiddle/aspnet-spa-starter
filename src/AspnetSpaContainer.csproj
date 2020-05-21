@@ -26,7 +26,7 @@
     <Exec Command="curl -I --url $SPA_DEV_SERVER_URI" ContinueOnError="true">
       <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
     </Exec>
-    <Error Condition="'$(ErrorCode)' != '0'" Text="spa-dev-server.dev container not running or $SPA_DEV_SERVER_URI: $(SPA_DEV_SERVER_URI) does not respond." />
+    <Error Condition="'$(ErrorCode)' != '0'" Text="spa-dev-server container not running or $SPA_DEV_SERVER_URI: $(SPA_DEV_SERVER_URI) does not respond." />
   </Target>
 
   <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
