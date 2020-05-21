@@ -101,9 +101,9 @@ jobs:
           docker-compose run e2e-tests
           docker-compose down
           mkdir ${{ github.workspace}}/e2eTestResults
-          cp ${{ runner.temp }}/e2eTestResults/cypressTestsOutput.xml ${{github.workspace}}/e2eTestResults/cypressTestsOutput.xml
+          cp -r ${{ runner.temp }}/e2eTestResults/ ${{github.workspace}}/e2eTestResults/
       - uses: actions/upload-artifact@v2
         if: ${{ success() || failure() }}
         with:
           name: e2e-test-results
-          path: ./e2eTestResults/cypressTestsOutput.xml
+          path: ./e2eTestResults/
