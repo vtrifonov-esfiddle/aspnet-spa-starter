@@ -23,7 +23,7 @@
 	"remote.extensionKind": {
 		"ms-azuretools.vscode-docker": [ "ui" ],
 	},
-	//"forwardPorts": [5000, 5001],
+	"forwardPorts": [5000, 5001],
 	"shutdownAction": "stopCompose",
 	// Uncomment the next line if you want start specific services in your Docker Compose config.
 	//"runServices": [""]
