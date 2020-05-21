@@ -4,7 +4,7 @@ WORKDIR /appSource/ClientApp
 COPY ./ClientApp /appSource/ClientApp
 
 RUN npm ci
-RUN npm run-script ng build --prod
+RUN npm run build
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 as aspnetBuild
 
