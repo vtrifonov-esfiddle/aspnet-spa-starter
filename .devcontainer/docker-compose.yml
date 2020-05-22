@@ -22,7 +22,7 @@ services:
     networks:
       dev-net:
     container_name: aspnet-spa-starter.dev
-    command: /bin/sh -c "dotnet restore && while sleep 1000; do :; done"
+    command: /bin/sh -c "dotnet restore && sleep infinity"
     environment:
       - SPA_DEV_SERVER_URI=http://spa-dev-server:3000/
       - ASPNETCORE_ENVIRONMENT=Development
@@ -60,7 +60,7 @@ services:
     container_name: e2e-tests-dev
     # "cypress/included" images have entrypoint set to globally installed cypress
     # so the command can simply add any arguments
-    entrypoint: /bin/sh -c "while sleep 1000; do :; done"
+    entrypoint: /bin/sh -c "sleep infinity"
     volumes:
       - ../src/ClientApp/e2eTests:/e2eTests
       - ../e2eTestResults:/e2eTestResults
