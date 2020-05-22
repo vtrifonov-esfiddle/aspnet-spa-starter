@@ -17,7 +17,6 @@ services:
     # so the command can simply add any arguments
     command: "--browser chrome"
     volumes:
-      - aspnet-spa-cypress-e2etests:/e2eTests
       - ${WORKSPACE_DIR_DOCKER_MOUNT}/src/ClientApp/e2eTests/cypress/integration:/e2eTests/cypress/integration:cached
       - ${WORKSPACE_DIR_DOCKER_MOUNT}/src/ClientApp/e2eTests/cypress.json:/e2eTests/cypress.json:cached
       - ${TEST_RESULTS_PATH}:/e2eTestResults
@@ -26,5 +25,3 @@ services:
       net:
 networks:
   net:
-volumes: 
-  aspnet-spa-cypress-e2etests:

@@ -3,7 +3,9 @@
     "supportFile": false,
     "reporter": "xunit",
     "reporterOptions": {
-        "output": "/e2eTestResults/cypressTestsOutput.xml",
+        "output": "/e2eTestResults/reporterOutput.xml",
         "toConsole": true
-    }
+    },
+    "screenshotsFolder": "/e2eTestResults/screenshots",
+    "videosFolder": "/e2eTestResults/videos"
 }
