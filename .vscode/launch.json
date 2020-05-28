@@ -45,6 +45,20 @@
             "type": "coreclr",
             "request": "attach",
             "processId": "${command:pickProcess}"
+        },
+        {            
+            "name": "Jest Tests Debug",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceRoot}/src/ClientApp",
+            "runtimeArgs": [
+                "--inspect-brk",
+                "${workspaceRoot}/src/ClientApp/node_modules/react-scripts/scripts/test.js",
+                "--runInBand",
+              ],
+              "console": "integratedTerminal",
+              "internalConsoleOptions": "neverOpen",
+              "port": 9229
         }
     ]
 }
