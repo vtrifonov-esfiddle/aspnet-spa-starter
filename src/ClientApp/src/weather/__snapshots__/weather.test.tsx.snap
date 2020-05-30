@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Weather forecast should look sensible 1`] = `
+<div>
+  <div
+    class="Weather"
+  >
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Date
+          </th>
+          <th>
+            Temp. °C
+          </th>
+          <th>
+            Temp. °F
+          </th>
+          <th>
+            Summary
+          </th>
+        </tr>
+      </thead>
+      <tbody />
+      <caption>
+        Weather forecast
+      </caption>
+    </table>
+  </div>
+</div>
+`;

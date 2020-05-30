@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import { Weather } from './weather';
+import { Weather } from './weather/weather';
 
 interface IState {
   value: string;
@@ -12,6 +11,6 @@ export interface ISandboxProps {
 }
 
 ReactDOM.render(
-  <Weather id={1} />,
+  <Weather />,
   document.getElementById('root')
 );
