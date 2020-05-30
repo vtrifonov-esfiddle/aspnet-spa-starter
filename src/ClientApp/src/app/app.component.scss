@@ -1,0 +1,28 @@
+.weather { 
+    table {
+        border-spacing: 0px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #e0e0dc;
+        
+        td {
+            padding-left: 18px;
+            padding-right: 18px;
+            padding-top: 6px;
+            padding-bottom: 6px;
+            border: 1px solid #e0e0dc;
+        }
+        th {
+            padding-left: 18px;
+            padding-right: 18px;
+            padding-top: 6px;
+            padding-bottom: 6px;
+            border: 1px solid #e0e0dc;
+            background-color: rgba(212,221,228,.5);
+        }
+        caption {
+            padding-top: 6px;
+            caption-side: bottom;
+        }
+    }    
+}

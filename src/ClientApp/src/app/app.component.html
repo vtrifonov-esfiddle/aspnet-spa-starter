@@ -339,13 +339,26 @@
   </div>
 
   <h2>Weather</h2>
-  <div class="weather" *ngIf="!!weather">
-    <ul>
-      <li>Summary: {{weather.summary}}</li>
-      <li>Temperature: {{weather.temperatureC}} °C</li>
-      <li>Temperature: {{weather.temperatureF}} °F</li>
-      <li>Date: {{weather.date.toDateString()}}</li>
-    </ul>
+  <div class="weather" *ngIf="!!weatherForecasts">
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Temp. °C</th>
+          <th>Temp. °F</th>
+          <th>Summary</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let forecast of weatherForecasts">
+          <td>{{forecast.date}}</td>
+          <td>{{forecast.temperatureC}}</td>
+          <td>{{forecast.temperatureF}}</td>
+          <td>{{forecast.summary}}</td>
+        </tr>
+      </tbody>
+      <caption>Weather forecast</caption>
+    </table>
   </div>
   <!-- Resources -->
   <h2>Resources</h2>

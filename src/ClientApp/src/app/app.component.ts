@@ -3,17 +3,15 @@ import { WeatherService, IWeather } from './weather.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   constructor (private weatherService: WeatherService) { }
 
-  ngOnInit() {
-    this.weatherService.getWeather().then((weather) => {
-      this.weather = weather;
-     })
+  async ngOnInit() {
+    this.weatherForecasts = await this.weatherService.getWeatherForecasts();
   }
 
-  weather: IWeather;
+  weatherForecasts: IWeather[];
   title = 'aspnet-spa-starter';
 }

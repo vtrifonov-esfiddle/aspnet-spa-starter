@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 
 export interface IWeather {
-  date: Date;
+  date: string;
   temperatureC: number;
   temperatureF: number;
   summary: string;
@@ -15,13 +15,14 @@ export class WeatherService {
 
   constructor() { }
 
-  async getWeather(weatherId: number = 1): Promise<IWeather> {
-    const response = await fetch(`/WeatherForecast/${weatherId}`);
+  async getWeatherForecasts(): Promise<IWeather[]> {
+    const response = await fetch(`/WeatherForecast/`);
     if (!response.ok)
       return null;
       
-    const result: IWeather = await response.json();
-    result.date = new Date(result.date);
-    return result;
+    const result: IWeather[] = await response.json();
+    return result.map(weather => (
+      {...weather, date: new Date(weather.date).toDateString()}
+    ));
   }
 }
