@@ -1,14 +1,24 @@
 <template>
   <div class="weather">
-    <h1>Weather</h1>
-    <div class="weather-loaded" v-if="!loading && !showError">
-        <h2>Summary: {{forecast.summary}}</h2>
-        <ul>
-            <li>Temperature {{forecast.temperatureC }} ℃</li>
-            <li>Temperature {{forecast.temperatureF}} ℉</li>
-            <li>Date: {{forecast.date.toDateString() }}</li>
-        </ul>
-    </div>
+    <table class="weather-loaded" v-if="!showError">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Temp. °C</th>
+            <th>Temp. °F</th>
+            <th>Summary</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr v-for="(forecast, index) in weatherForecasts" v-bind:key="index">
+              <td>{{forecast.date}}</td>
+              <td>{{forecast.temperatureC}}</td>
+              <td>{{forecast.temperatureF}}</td>
+              <td>{{forecast.summary}}</td>
+            </tr>
+        </tbody>
+        <caption>Weather forecast</caption>
+    </table>
     <div class="weather-loading" v-if="showError">
         <h2>Error</h2>
         <p>{{errorMessage}}</p>
@@ -19,32 +29,30 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
-class Forecast {
-  constructor(
-    public date: Date,
-    public temperatureC: number,
-    public temperatureF: number,
-    public summary: string,
-  ) {}
+interface Forecast {
+    date: string;
+    temperatureC: number;
+    temperatureF: number;
+    summary: string;
 }
 
 @Component
 export default class Weather extends Vue {
     private showError = false;
     private errorMessage = '';
-    private forecast = {} as Forecast;
+    private weatherForecasts = [] as Forecast[];
 
     private created() {
-        this.fetchWeatherForecast(1);
+        this.fetchWeatherForecasts();
     }
 
-    private async fetchWeatherForecast(weatherId: number) {
+    private async fetchWeatherForecasts() {
         try {
-            const response = await fetch(`/WeatherForecast/${weatherId}`);
-            this.forecast = await response.json().then(responseForecast => {
-                responseForecast.date = new Date(responseForecast.date);
-                return responseForecast;
-            });
+            const response = await fetch(`/WeatherForecast/`);
+            const weatherForecasts = await response.json();
+            this.weatherForecasts = weatherForecasts.map((w: Forecast) => (
+                {...w, date: new Date(w.date).toDateString()}
+            ));
         } catch (e) {
             this.showError = true;
             this.errorMessage = `Error while loading weather forecast: ${e.message}.`;
@@ -54,13 +62,33 @@ export default class Weather extends Vue {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-li {
-    display: block;
-    margin: 0 10px;
+<style scoped lang="scss">
+.weather table {
+    margin-left: auto;
+    margin-right: auto;
+    border-spacing: 0px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #e0e0dc;
+
+    td {
+        padding-left: 18px;
+        padding-right: 18px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        border: 1px solid #e0e0dc;
+    }
+    th {
+        padding-left: 18px;
+        padding-right: 18px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        border: 1px solid #e0e0dc;
+        background-color: rgba(212,221,228,.5);
+    }
+    caption {
+        padding-top: 6px;
+        caption-side: bottom;
+    }
 }
 </style>
